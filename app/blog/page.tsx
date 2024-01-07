@@ -20,16 +20,6 @@ export default function Home() {
       <ul>
         {allPostsData.map(({ id, date, title, summary }) => (
           <CardGradient key={id} id={id} date={date} title={title} summary={summary} />
-
-          // <li key={id}>
-          //   <div>
-          //     <Link href={`/blog/posts/${id}`}>{title}</Link>
-          //   </div>
-          //   {/* <br /> */}
-          //   <small>
-          //     <Date dateString={date} />
-          //   </small>
-          // </li>
         ))}
       </ul>
     </section>
