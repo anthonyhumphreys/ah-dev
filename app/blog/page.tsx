@@ -17,11 +17,9 @@ export default function Home() {
 
   return (
     <section>
-      <ul>
-        {allPostsData.map(({ id, date, title, summary }) => (
-          <CardGradient key={id} id={id} date={date} title={title} summary={summary} />
-        ))}
-      </ul>
+      {allPostsData.map(({ id, date, title, summary }) => (
+        <CardGradient key={id} id={id} date={date} title={title} summary={summary} />
+      ))}
     </section>
   );
 }

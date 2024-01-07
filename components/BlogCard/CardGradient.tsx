@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function CardGradient({ id, date, title, summary }) {
   return (
     <Link href={`/blog/posts/${id}`} style={{ textDecoration: 'none', color: 'unset' }}>
-      <Paper withBorder radius="md" className={classes.card}>
+      <Paper withBorder radius="md" className={classes.card} mb="lg">
         <ThemeIcon
           size="xl"
           radius="md"
