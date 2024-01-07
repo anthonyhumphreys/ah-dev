@@ -5,6 +5,7 @@ type AllPostsData = {
   date: string;
   title: string;
   id: string;
+  summary: string;
 }[];
 
 export const metadata = {
