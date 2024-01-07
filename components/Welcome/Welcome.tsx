@@ -1,23 +1,25 @@
 import { Title, Text, Anchor } from '@mantine/core';
 import classes from './Welcome.module.css';
+import { SocialButtons } from '../SocialButtons/SocialButtons';
 
 export function Welcome() {
   return (
     <>
       <Title className={classes.title} ta="center" mt={100}>
         Welcome to{' '}
-        <Text inherit variant="gradient" component="span" gradient={{ from: 'pink', to: 'yellow' }}>
-          Mantine
+        <Text inherit variant="gradient" component="span" gradient={{ from: 'blue', to: 'pink' }}>
+          AH Dev
         </Text>
       </Title>
-      <Text c="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-        This starter Next.js project includes a minimal setup for server side rendering, if you want
-        to learn more on Mantine + Next.js integration follow{' '}
-        <Anchor href="https://mantine.dev/guides/next/" size="lg">
-          this guide
+      <Text ta="center" size="xl" maw={580} mx="auto" mt="xl">
+        A home for my blog, some personal projects, and a place to learn about me. You can learn
+        about how this site was built by checking out{' '}
+        <Anchor href="" size="xl">
+          this page{' '}
         </Anchor>
-        . To get started edit page.tsx file.
+        or you can find me on the following platforms:
       </Text>
+      <SocialButtons />
     </>
   );
 }

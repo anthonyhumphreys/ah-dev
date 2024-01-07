@@ -1,7 +1,9 @@
 import '@mantine/core/styles.css';
 import React from 'react';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
+import { Analytics } from '@vercel/analytics/react';
 import { theme } from '../theme';
+import { HeaderWithProjectsMenu } from '@/components/Header/Header';
 
 export const metadata = {
   title: 'Mantine Next.js template',
@@ -12,7 +14,7 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript defaultColorScheme="auto" />
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
@@ -20,7 +22,11 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme} defaultColorScheme="auto">
+          <HeaderWithProjectsMenu />
+          {children}
+        </MantineProvider>
+        <Analytics />
       </body>
     </html>
   );
