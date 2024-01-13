@@ -6,8 +6,8 @@ import { theme } from '../theme';
 import { HeaderWithProjectsMenu } from '@/components/Header/Header';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'AnthonyHumphreys.dev',
+  description: 'Innovation, Technology, and Beyond',
 };
 
 export default function RootLayout({ children }: { children: any }) {

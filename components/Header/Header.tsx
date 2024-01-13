@@ -35,39 +35,17 @@ import {
   IconBrandMantine,
   IconSun,
   IconMoon,
+  IconBrain,
 } from '@tabler/icons-react';
 import classes from './Header.module.css';
 
-const mockdata = [
+const projects = [
   {
-    icon: IconCode,
-    title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
-  },
-  {
-    icon: IconCoin,
-    title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
-  },
-  {
-    icon: IconBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
-  },
-  {
-    icon: IconFingerprint,
-    title: 'Security',
-    description: 'The shell’s rounded shape and the grooves on its.',
-  },
-  {
-    icon: IconChartPie3,
-    title: 'Analytics',
-    description: 'This Pokémon uses its flying ability to quickly chase',
-  },
-  {
-    icon: IconNotification,
-    title: 'Notifications',
-    description: 'Combusken battles with the intensely hot flames it spews',
+    icon: IconBrain,
+    title: 'AI Scrum Assistant',
+    description:
+      'A collection of tools to help scrum coaches, all wrapped up in a helpful AI Asssitant.',
+    slug: 'ai-scrum-assistant',
   },
 ];
 
@@ -78,8 +56,13 @@ export function HeaderWithProjectsMenu() {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
-  const links = mockdata.map((item) => (
-    <UnstyledButton className={classes.subLink} key={item.title}>
+  const links = projects.map((item) => (
+    <UnstyledButton
+      component="a"
+      className={classes.subLink}
+      key={item.title}
+      href={`projects/${item.slug}`}
+    >
       <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="default" radius="md">
           <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
