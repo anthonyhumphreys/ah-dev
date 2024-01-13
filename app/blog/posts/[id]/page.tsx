@@ -1,6 +1,6 @@
 import Date from '@/components/Date';
 
-import { getAllPostIds, getPostData } from '@/utils/posts';
+import { getPostData } from '@/utils/posts';
 
 type Params = {
   id: string;
@@ -17,7 +17,6 @@ type PostData = {
 };
 
 export async function generateMetadata({ params }: Props) {
-  console.log('generateMetadata', params);
   const postData: PostData = await getPostData(params.id);
 
   return {
@@ -27,7 +26,6 @@ export async function generateMetadata({ params }: Props) {
 
 // -< Post >-
 export default async function Post({ params }: Props) {
-  console.log('params', params);
   const postData: PostData = await getPostData(params.id);
 
   return (

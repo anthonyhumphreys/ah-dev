@@ -150,10 +150,10 @@ export function HeaderWithProjectsMenu() {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="#" className={classes.link}>
+            <a href="blog" className={classes.link}>
               Blog
             </a>
-            <a href="#" className={classes.link}>
+            <a href="about" className={classes.link}>
               About
             </a>
           </Group>
@@ -202,10 +202,10 @@ export function HeaderWithProjectsMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="#" className={classes.link}>
+          <a href="blog" className={classes.link}>
             Blog
           </a>
-          <a href="#" className={classes.link}>
+          <a href="about" className={classes.link}>
             About
           </a>
 
