@@ -1,7 +1,9 @@
+'use client';
+
 import { TextInput, Textarea, SimpleGrid, Group, Title, Button } from '@mantine/core';
 import { useForm } from '@mantine/form';
 
-export function GetInTouchSimple() {
+export default function Contact() {
   const form = useForm({
     initialValues: {
       name: '',

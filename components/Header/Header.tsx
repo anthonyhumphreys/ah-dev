@@ -25,6 +25,7 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandMantine, IconChevronDown, IconMoon, IconSun } from '@tabler/icons-react';
 import cx from 'clsx';
+import Link from 'next/link';
 import { projectList } from '../ProjectList/ProjectList';
 import classes from './Header.module.css';
 
@@ -37,7 +38,7 @@ export function HeaderWithProjectsMenu() {
 
   const links = projectList.map((item) => (
     <UnstyledButton
-      component="a"
+      component={Link}
       className={classes.subLink}
       key={item.title}
       href={`projects/${item.slug}`}
@@ -65,12 +66,12 @@ export function HeaderWithProjectsMenu() {
           <IconBrandMantine size={30} />
 
           <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <Link href="/" className={classes.link}>
               Home
-            </a>
+            </Link>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
               <HoverCard.Target>
-                <a href="#" className={classes.link}>
+                <Link href="projects" className={classes.link}>
                   <Center inline>
                     <Box component="span" mr={5}>
                       Projects
@@ -80,15 +81,15 @@ export function HeaderWithProjectsMenu() {
                       color={theme.colors.blue[6]}
                     />
                   </Center>
-                </a>
+                </Link>
               </HoverCard.Target>
 
               <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
                 <Group justify="space-between" px="md">
                   <Text fw={500}>Projects</Text>
-                  <Anchor href="#" fz="xs">
+                  <Link href="projects" fz="xs">
                     View all
-                  </Anchor>
+                  </Link>
                 </Group>
 
                 <Divider my="sm" />
@@ -107,22 +108,22 @@ export function HeaderWithProjectsMenu() {
                         Always happy to talk through new ideas!
                       </Text>
                     </div>
-                    <Button variant="default" component="a" href="contact">
+                    <Button variant="default" component={Link} href="contact">
                       Get in touch
                     </Button>
                   </Group>
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <a href="blog" className={classes.link}>
+            <Link href="blog" className={classes.link}>
               Blog
-            </a>
-            <a href="about" className={classes.link}>
+            </Link>
+            <Link href="about" className={classes.link}>
               About
-            </a>
-            <a href="contact" className={classes.link}>
+            </Link>
+            <Link href="contact" className={classes.link}>
               Contact
-            </a>
+            </Link>
           </Group>
 
           <Group visibleFrom="sm">
@@ -154,9 +155,9 @@ export function HeaderWithProjectsMenu() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <a href="#" className={classes.link}>
+          <Link href="/" className={classes.link}>
             Home
-          </a>
+          </Link>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
               <Box component="span" mr={5}>
@@ -169,12 +170,12 @@ export function HeaderWithProjectsMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <a href="blog" className={classes.link}>
+          <Link href="blog" className={classes.link}>
             Blog
-          </a>
-          <a href="about" className={classes.link}>
+          </Link>
+          <Link href="about" className={classes.link}>
             About
-          </a>
+          </Link>
 
           <Divider my="sm" />
 
