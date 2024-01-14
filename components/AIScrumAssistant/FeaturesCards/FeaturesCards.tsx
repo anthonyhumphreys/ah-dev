@@ -2,26 +2,16 @@
 
 import {
   Badge,
-  Group,
-  Title,
-  Text,
   Card,
-  SimpleGrid,
   Container,
+  Group,
+  SimpleGrid,
+  Text,
+  Title,
   rem,
   useMantineTheme,
-  Button,
 } from '@mantine/core';
-import {
-  IconGauge,
-  IconUser,
-  IconCookie,
-  IconUsersGroup,
-  IconBook,
-  IconArtboard,
-  IconLayoutKanban,
-  IconChecklist,
-} from '@tabler/icons-react';
+import { IconChecklist, IconLayoutKanban, IconUsersGroup } from '@tabler/icons-react';
 import classes from './FeaturesCards.module.css';
 
 const listOfFeatures = [
@@ -78,7 +68,7 @@ export function FeaturesCards() {
     <Container size="lg" py="xl">
       <Group justify="center">
         <Badge variant="filled" size="lg">
-          Powered by OpenAI's GPT-3.5-Turbo
+          Powered by OpenAI&apos;s GPT-3.5-Turbo
         </Badge>
       </Group>
 
@@ -89,7 +79,7 @@ export function FeaturesCards() {
       <Text c="dimmed" className={classes.description} ta="center" mt="md">
         Save time and effort by automating the creation of user personas, user stories, and
         acceptance criteria. Using AI, generate new ideas, or clarify existing ones. This might even
-        find edge cases or potential use cases you hadn't even considered.
+        help find edge cases or potential use cases you hadn&apos;t even considered.
       </Text>
 
       <SimpleGrid cols={{ base: 1, md: 3 }} spacing="xl" mt={50}>

@@ -1,53 +1,32 @@
 'use client';
 
-import cx from 'clsx';
 import {
-  HoverCard,
-  Group,
-  Button,
-  UnstyledButton,
-  Text,
-  SimpleGrid,
-  ThemeIcon,
+  ActionIcon,
   Anchor,
-  Divider,
-  Center,
   Box,
   Burger,
-  Drawer,
+  Button,
+  Center,
   Collapse,
+  Divider,
+  Drawer,
+  Group,
+  HoverCard,
   ScrollArea,
+  SimpleGrid,
+  Text,
+  ThemeIcon,
+  UnstyledButton,
   rem,
-  useMantineTheme,
-  ActionIcon,
-  useMantineColorScheme,
   useComputedColorScheme,
+  useMantineColorScheme,
+  useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
-  IconChevronDown,
-  IconBrandMantine,
-  IconSun,
-  IconMoon,
-  IconBrain,
-} from '@tabler/icons-react';
+import { IconBrandMantine, IconChevronDown, IconMoon, IconSun } from '@tabler/icons-react';
+import cx from 'clsx';
+import { projectList } from '../ProjectList/ProjectList';
 import classes from './Header.module.css';
-
-const projects = [
-  {
-    icon: IconBrain,
-    title: 'AI Scrum Assistant',
-    description:
-      'A collection of tools to help scrum coaches, all wrapped up in a helpful AI Asssitant.',
-    slug: 'ai-scrum-assistant',
-  },
-];
 
 export function HeaderWithProjectsMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
@@ -56,7 +35,7 @@ export function HeaderWithProjectsMenu() {
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
-  const links = projects.map((item) => (
+  const links = projectList.map((item) => (
     <UnstyledButton
       component="a"
       className={classes.subLink}
@@ -122,13 +101,15 @@ export function HeaderWithProjectsMenu() {
                   <Group justify="space-between">
                     <div>
                       <Text fw={500} fz="sm">
-                        Get started
+                        Got an idea?
                       </Text>
                       <Text size="xs" c="dimmed">
-                        Their food sources have decreased, and their numbers
+                        Always happy to talk through new ideas!
                       </Text>
                     </div>
-                    <Button variant="default">Get started</Button>
+                    <Button variant="default" component="a" href="contact">
+                      Get in touch
+                    </Button>
                   </Group>
                 </div>
               </HoverCard.Dropdown>
@@ -138,6 +119,9 @@ export function HeaderWithProjectsMenu() {
             </a>
             <a href="about" className={classes.link}>
               About
+            </a>
+            <a href="contact" className={classes.link}>
+              Contact
             </a>
           </Group>
 
