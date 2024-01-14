@@ -87,9 +87,7 @@ export function HeaderWithProjectsMenu() {
               <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
                 <Group justify="space-between" px="md">
                   <Text fw={500}>Projects</Text>
-                  <Link href="projects" fz="xs">
-                    View all
-                  </Link>
+                  <Link href="projects">View all</Link>
                 </Group>
 
                 <Divider my="sm" />

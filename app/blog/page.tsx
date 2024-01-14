@@ -17,8 +17,8 @@ export default function Home() {
 
   return (
     <section>
-      {allPostsData.map(({ id, date, title, summary }) => (
-        <CardGradient key={id} id={id} date={date} title={title} summary={summary} />
+      {allPostsData.map(({ id, title, summary }) => (
+        <CardGradient key={id} id={id} title={title} summary={summary} />
       ))}
     </section>
   );

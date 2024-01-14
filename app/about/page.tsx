@@ -9,16 +9,19 @@ export default function About() {
       </Title>
 
       <Text className={classes.description} ta="center" mt="md">
-        I am a Senior Developer at Lancaster Universty with the{' '}
-        <a href="https://lancaster.ac.uk/iss/itpi">IT Partnering and Innovation</a> Team. I work on
-        the University&apos;s mobile app, a number of other key services, and a whole host of
-        innovation projects ranging from research support to Augmented Reality and Generative AI.
+        I am a Senior Developer at Lancaster University, working as part of the dynamic IT
+        Partnering and Innovation team. Within this role, I look after the development of the
+        University&apos;s mobile app, contribute to several key services, and engage in a diverse
+        array of innovation projects. These initiatives span from providing research support to
+        delving into cutting-edge technologies like Augmented Reality and Generative AI.
       </Text>
 
       <Text className={classes.description} ta="center" mt="md">
-        My key skills are in React, React Native, C#/.net and AWS but I am always looking to learn
-        new things. I am currently working through the AWS Application Architect Certification
-        pathway. I am also a certified Scrum Coach, with a passion for Agile practices.
+        My expertise lies in crafting seamless solutions using React, React Native, C#/.NET, and AWS
+        technologies. I maintain a perpetual enthusiasm for learning and growth. Currently, I am
+        actively pursuing the AWS Application Architect Certification pathway to further deepen my
+        cloud computing skills. Additionally, I hold a certification as a Scrum Coach, reflecting my
+        commitment and passion for promoting Agile practices.
       </Text>
     </Container>
   );
