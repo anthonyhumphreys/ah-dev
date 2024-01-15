@@ -3,7 +3,7 @@ import classes from './about.module.css';
 
 export default function About() {
   return (
-    <Container>
+    <Container size="md">
       <Title order={2} className={classes.title} ta="center" mt="sm">
         Anthony Humphreys
       </Title>

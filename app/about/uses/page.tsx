@@ -2,7 +2,7 @@ import { Container, Text } from '@mantine/core';
 
 export default function Uses() {
   return (
-    <Container>
+    <Container size="md">
       <Text>Uses</Text>
       <Text>Hardware</Text>
       <ul>

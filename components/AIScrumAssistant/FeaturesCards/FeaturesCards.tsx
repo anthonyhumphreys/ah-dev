@@ -65,7 +65,7 @@ export function FeaturesCards() {
   ));
 
   return (
-    <Container size="lg" py="xl">
+    <Container size="md" py="xl">
       <Group justify="center">
         <Badge variant="filled" size="lg">
           Powered by OpenAI&apos;s GPT-3.5-Turbo

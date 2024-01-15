@@ -1,10 +1,10 @@
-import { Title, Text, Anchor } from '@mantine/core';
+import { Title, Text, Anchor, Container } from '@mantine/core';
 import classes from './Welcome.module.css';
 import { SocialButtons } from '../SocialButtons/SocialButtons';
 
 export function Welcome() {
   return (
-    <>
+    <Container size="md">
       <Title className={classes.title} ta="center" mt={100}>
         Welcome to{' '}
         <Text inherit variant="gradient" component="span" gradient={{ from: 'blue', to: 'pink' }}>
@@ -20,6 +20,6 @@ export function Welcome() {
         or you can find me on the following platforms:
       </Text>
       <SocialButtons />
-    </>
+    </Container>
   );
 }

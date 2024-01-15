@@ -2,7 +2,6 @@
 
 import {
   ActionIcon,
-  Anchor,
   Box,
   Burger,
   Button,
@@ -41,7 +40,7 @@ export function HeaderWithProjectsMenu() {
       component={Link}
       className={classes.subLink}
       key={item.title}
-      href={`projects/${item.slug}`}
+      href={`/projects/${item.slug}`}
     >
       <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="default" radius="md">
@@ -71,7 +70,7 @@ export function HeaderWithProjectsMenu() {
             </Link>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
               <HoverCard.Target>
-                <Link href="projects" className={classes.link}>
+                <Link href="/projects" className={classes.link}>
                   <Center inline>
                     <Box component="span" mr={5}>
                       Projects
@@ -87,7 +86,7 @@ export function HeaderWithProjectsMenu() {
               <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
                 <Group justify="space-between" px="md">
                   <Text fw={500}>Projects</Text>
-                  <Link href="projects">View all</Link>
+                  <Link href="/projects">View all</Link>
                 </Group>
 
                 <Divider my="sm" />
@@ -106,7 +105,7 @@ export function HeaderWithProjectsMenu() {
                         Always happy to talk through new ideas!
                       </Text>
                     </div>
-                    <Button variant="default" component={Link} href="contact">
+                    <Button variant="default" component={Link} href="/contact">
                       Get in touch
                     </Button>
                   </Group>
@@ -116,10 +115,10 @@ export function HeaderWithProjectsMenu() {
             <Link href="blog" className={classes.link}>
               Blog
             </Link>
-            <Link href="about" className={classes.link}>
+            <Link href="/about" className={classes.link}>
               About
             </Link>
-            <Link href="contact" className={classes.link}>
+            <Link href="/contact" className={classes.link}>
               Contact
             </Link>
           </Group>
@@ -168,10 +167,10 @@ export function HeaderWithProjectsMenu() {
             </Center>
           </UnstyledButton>
           <Collapse in={linksOpened}>{links}</Collapse>
-          <Link href="blog" className={classes.link}>
+          <Link href="/blog" className={classes.link}>
             Blog
           </Link>
-          <Link href="about" className={classes.link}>
+          <Link href="/about" className={classes.link}>
             About
           </Link>
 
