@@ -27,6 +27,7 @@ import cx from 'clsx';
 import Link from 'next/link';
 import { projectList } from '../ProjectList/ProjectList';
 import classes from './Header.module.css';
+import Image from 'next/image';
 
 export function HeaderWithProjectsMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
@@ -62,7 +63,13 @@ export function HeaderWithProjectsMenu() {
     <Box pb={120}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <IconBrandMantine size={30} />
+          {/* <Image
+            src="/favicon.jpeg"
+            width={50}
+            height={50}
+            alt="Anthony Humphreys logo"
+            style={{ borderRadius: 15 }}
+          /> */}
 
           <Group h="100%" gap={0} visibleFrom="sm">
             <Link href="/" className={classes.link}>
