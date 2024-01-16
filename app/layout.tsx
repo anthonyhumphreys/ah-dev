@@ -4,6 +4,7 @@ import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { Analytics } from '@vercel/analytics/react';
 import { theme } from '../theme';
 import { HeaderWithProjectsMenu } from '@/components/Header/Header';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
   title: 'AnthonyHumphreys.dev',
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: any }) {
           {children}
         </MantineProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
