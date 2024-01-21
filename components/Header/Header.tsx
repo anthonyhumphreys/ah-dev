@@ -106,10 +106,7 @@ export function HeaderWithProjectsMenu() {
                   <Group justify="space-between">
                     <div>
                       <Text fw={500} fz="sm">
-                        Got an idea?
-                      </Text>
-                      <Text size="xs" c="dimmed">
-                        Always happy to talk through new ideas!
+                        Got an idea or problem you&apos;d like to see explored?
                       </Text>
                     </div>
                     <Button variant="default" component={Link} href="/contact">

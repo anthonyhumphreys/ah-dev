@@ -1,3 +1,3 @@
-export default function AcceptanceCriteria() {
-  return <h1>Acceptance Criteria</h1>;
+export default function UserPersonas() {
+  return <h1>User Personas</h1>;
 }
