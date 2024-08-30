@@ -8,7 +8,7 @@ import {
   rem,
   useMantineTheme,
 } from '@mantine/core';
-import { IconBrain } from '@tabler/icons-react';
+import { IconBrain, IconTerminal } from '@tabler/icons-react';
 import classes from './ProjectList.module.css';
 
 interface ProjectProps {
@@ -23,8 +23,15 @@ export const projectList = [
     icon: IconBrain,
     title: 'AI Scrum Assistant',
     description:
-      'A collection of tools to help scrum coaches, all wrapped up in a helpful AI Asssitant.',
+      'A collection of tools to help scrum coaches, all wrapped up in a helpful AI Assistant.',
     slug: 'ai-scrum-assistant',
+  },
+  {
+    icon: IconTerminal,
+    title: 'SDaaS',
+    description:
+      'An on-demand AI powered Senior Developer as a Service. Answer questions, review code and more.',
+    slug: 'ai-senior-developer',
   },
 ];
 

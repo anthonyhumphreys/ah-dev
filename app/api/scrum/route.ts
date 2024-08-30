@@ -1,6 +1,9 @@
-import { openai } from '@ai-sdk/openai';
+import { createOpenAI } from '@ai-sdk/openai';
 import { getSession } from '@auth0/nextjs-auth0';
 import { StreamingTextResponse, streamText, StreamData } from 'ai';
+
+// Create an OpenAI API client instance using the scrum project API key
+const openai = createOpenAI({ apiKey: process.env.OPEN_AI_API_KEY__SCRUM });
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -19,7 +22,7 @@ export async function POST(req: Request) {
 
   // Call the language model
   const result = await streamText({
-    model: openai('gpt-4-turbo'),
+    model: openai('gpt-4o-mini'),
     messages,
   });
 
