@@ -1,10 +1,10 @@
-import '@mantine/core/styles.css';
-import React from 'react';
-import { MantineProvider, ColorSchemeScript } from '@mantine/core';
-import { Analytics } from '@vercel/analytics/react';
-import { theme } from '../theme';
 import { HeaderWithProjectsMenu } from '@/components/Header/Header';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { theme } from '../theme';
 
 export const metadata = {
   title: 'AnthonyHumphreys.dev',
@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: any }) {
       <body>
         <MantineProvider theme={theme} defaultColorScheme="auto">
           <HeaderWithProjectsMenu />
-          {children}
+          <UserProvider>{children}</UserProvider>
         </MantineProvider>
         <Analytics />
         <SpeedInsights />

@@ -1,0 +1,17 @@
+
+.content {
+  & > p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.userMessage {  
+  align-self: flex-end;
+  justify-content: flex-end;
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
+
+}
+
+.assistantMessage {
+  padding: var(--mantine-spacing-lg) var(--mantine-spacing-xl);
+}

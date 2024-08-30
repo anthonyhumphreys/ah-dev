@@ -22,12 +22,11 @@ import {
   useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconBrandMantine, IconChevronDown, IconMoon, IconSun } from '@tabler/icons-react';
+import { IconChevronDown, IconMoon, IconSun } from '@tabler/icons-react';
 import cx from 'clsx';
 import Link from 'next/link';
 import { projectList } from '../ProjectList/ProjectList';
 import classes from './Header.module.css';
-import Image from 'next/image';
 
 export function HeaderWithProjectsMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
