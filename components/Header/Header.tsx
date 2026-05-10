@@ -74,7 +74,7 @@ export function HeaderWithProjectsMenu() {
             <Link href="/" className={classes.link}>
               Home
             </Link>
-            <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
+            {/* <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
               <HoverCard.Target>
                 <Link href="/projects" className={classes.link}>
                   <Center inline>
@@ -114,10 +114,10 @@ export function HeaderWithProjectsMenu() {
                   </Group>
                 </div>
               </HoverCard.Dropdown>
-            </HoverCard>
-            <Link href="blog" className={classes.link}>
+            </HoverCard> */}
+            {/* <Link href="blog" className={classes.link}>
               Blog
-            </Link>
+            </Link> */}
             <Link href="/about" className={classes.link}>
               About
             </Link>
@@ -136,7 +136,7 @@ export function HeaderWithProjectsMenu() {
               <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
               <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
             </ActionIcon>
-            <Button>Sign up for my newsletter</Button>
+            {/* <Button>Sign up for my newsletter</Button> */}
           </Group>
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />

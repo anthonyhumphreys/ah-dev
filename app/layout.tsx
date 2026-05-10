@@ -1,5 +1,4 @@
 import { HeaderWithProjectsMenu } from '@/components/Header/Header';
-import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { Analytics } from '@vercel/analytics/react';
@@ -24,8 +23,8 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme} defaultColorScheme="auto">
-          <HeaderWithProjectsMenu />
-          <UserProvider>{children}</UserProvider>
+            <HeaderWithProjectsMenu />
+            {children}
         </MantineProvider>
         <Analytics />
         <SpeedInsights />
