@@ -22,7 +22,7 @@
     left: 0;
     width: rem(6px);
     background-image: linear-gradient(
-      0,
+      0deg,
       var(--mantine-color-pink-6),
       var(--mantine-color-orange-6)
     );

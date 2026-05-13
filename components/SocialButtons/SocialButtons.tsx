@@ -5,9 +5,7 @@ import {
   IconBrandTwitch,
   IconBrandTwitter,
 } from '@tabler/icons-react';
-import Link from 'next/link';
 import { useMemo } from 'react';
-// import classes from './SocialButtons.module.css';
 
 export const SocialProviderLinks = {
   Twitter: 'https://twitter.com/aphumphreys',
@@ -43,7 +41,7 @@ export function SocialButton(
       component="a"
       href={SocialProviderLinks[props.channel]}
       target="_blank"
-      //   className={classes.discordButton}
+      rel="noreferrer"
       leftSection={Icon}
     />
   );

@@ -11,9 +11,6 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   // Optionally, add any other Next.js config below
   reactStrictMode: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },

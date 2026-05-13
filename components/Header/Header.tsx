@@ -4,139 +4,59 @@ import {
   ActionIcon,
   Box,
   Burger,
-  Button,
-  Center,
-  Collapse,
   Divider,
   Drawer,
   Group,
-  HoverCard,
   ScrollArea,
-  SimpleGrid,
-  Text,
-  ThemeIcon,
-  UnstyledButton,
   rem,
   useComputedColorScheme,
   useMantineColorScheme,
-  useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown, IconMoon, IconSun } from '@tabler/icons-react';
+import { IconMoon, IconSun } from '@tabler/icons-react';
 import cx from 'clsx';
 import Link from 'next/link';
-import { projectList } from '../ProjectList/ProjectList';
 import classes from './Header.module.css';
+
+const navItems = [
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Products', href: '/#products' },
+  { label: 'Platforms', href: '/#platforms' },
+  { label: 'Writing', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
 
 export function HeaderWithProjectsMenu() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-  const theme = useMantineTheme();
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
 
-  const links = projectList.map((item) => (
-    <UnstyledButton
-      component={Link}
-      className={classes.subLink}
-      key={item.title}
-      href={`/projects/${item.slug}`}
-    >
-      <Group wrap="nowrap" align="flex-start">
-        <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
-        </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" c="dimmed">
-            {item.description}
-          </Text>
-        </div>
-      </Group>
-    </UnstyledButton>
-  ));
-
   return (
-    <Box pb={120}>
+    <Box className={classes.shell}>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          {/* <Image
-            src="/favicon.jpeg"
-            width={50}
-            height={50}
-            alt="Anthony Humphreys logo"
-            style={{ borderRadius: 15 }}
-          /> */}
+          <Link href="/" className={classes.brand}>
+            Anthony Humphreys
+          </Link>
 
           <Group h="100%" gap={0} visibleFrom="sm">
-            <Link href="/" className={classes.link}>
-              Home
-            </Link>
-            {/* <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
-              <HoverCard.Target>
-                <Link href="/projects" className={classes.link}>
-                  <Center inline>
-                    <Box component="span" mr={5}>
-                      Projects
-                    </Box>
-                    <IconChevronDown
-                      style={{ width: rem(16), height: rem(16) }}
-                      color={theme.colors.blue[6]}
-                    />
-                  </Center>
-                </Link>
-              </HoverCard.Target>
-
-              <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
-                <Group justify="space-between" px="md">
-                  <Text fw={500}>Projects</Text>
-                  <Link href="/projects">View all</Link>
-                </Group>
-
-                <Divider my="sm" />
-
-                <SimpleGrid cols={2} spacing={0}>
-                  {links}
-                </SimpleGrid>
-
-                <div className={classes.dropdownFooter}>
-                  <Group justify="space-between">
-                    <div>
-                      <Text fw={500} fz="sm">
-                        Got an idea or problem you&apos;d like to see explored?
-                      </Text>
-                    </div>
-                    <Button variant="default" component={Link} href="/contact">
-                      Get in touch
-                    </Button>
-                  </Group>
-                </div>
-              </HoverCard.Dropdown>
-            </HoverCard> */}
-            {/* <Link href="blog" className={classes.link}>
-              Blog
-            </Link> */}
-            <Link href="/about" className={classes.link}>
-              About
-            </Link>
-            <Link href="/contact" className={classes.link}>
-              Contact
-            </Link>
+            {navItems.map((item) => (
+              <Link href={item.href} className={classes.link} key={item.label}>
+                {item.label}
+              </Link>
+            ))}
           </Group>
 
           <Group visibleFrom="sm">
             <ActionIcon
               onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
               variant="default"
-              size="xl"
+              size="lg"
               aria-label="Toggle color scheme"
             >
-              <IconSun className={cx(classes.icon, classes.light)} stroke={1.5} />
-              <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5} />
+              <IconSun className={cx(classes.icon, classes.light)} stroke={1.7} />
+              <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.7} />
             </ActionIcon>
-            {/* <Button>Sign up for my newsletter</Button> */}
           </Group>
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
@@ -155,33 +75,11 @@ export function HeaderWithProjectsMenu() {
         <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
           <Divider my="sm" />
 
-          <Link href="/" className={classes.link}>
-            Home
-          </Link>
-          <UnstyledButton className={classes.link} onClick={toggleLinks}>
-            <Center inline>
-              <Box component="span" mr={5}>
-                Projects
-              </Box>
-              <IconChevronDown
-                style={{ width: rem(16), height: rem(16) }}
-                color={theme.colors.blue[6]}
-              />
-            </Center>
-          </UnstyledButton>
-          <Collapse in={linksOpened}>{links}</Collapse>
-          <Link href="/blog" className={classes.link}>
-            Blog
-          </Link>
-          <Link href="/about" className={classes.link}>
-            About
-          </Link>
-
-          <Divider my="sm" />
-
-          <Group justify="center" grow pb="xl" px="md">
-            <Button>Sign up</Button>
-          </Group>
+          {navItems.map((item) => (
+            <Link href={item.href} className={classes.link} key={item.label} onClick={closeDrawer}>
+              {item.label}
+            </Link>
+          ))}
         </ScrollArea>
       </Drawer>
     </Box>

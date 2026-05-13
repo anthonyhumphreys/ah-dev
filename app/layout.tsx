@@ -6,13 +6,14 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { theme } from '../theme';
 
 export const metadata = {
-  title: 'AnthonyHumphreys.dev',
-  description: 'Innovation, Technology, and Beyond',
+  title: 'Anthony Humphreys | Product Engineering, AI and Mobile Platforms',
+  description:
+    'A showcase of software products, AI systems, mobile platforms, research tools, and digital services built by Anthony Humphreys.',
 };
 
 export default function RootLayout({ children }: { children: any }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <ColorSchemeScript defaultColorScheme="auto" />
         {/* <link rel="shortcut icon" href="/favicon.jpeg" /> */}
@@ -23,8 +24,8 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme} defaultColorScheme="auto">
-            <HeaderWithProjectsMenu />
-            {children}
+          <HeaderWithProjectsMenu />
+          {children}
         </MantineProvider>
         <Analytics />
         <SpeedInsights />
