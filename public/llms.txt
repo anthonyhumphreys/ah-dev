@@ -1,0 +1,34 @@
+# Anthony Humphreys
+
+Anthony Humphreys is a product-minded senior developer building useful software across AI, mobile, research, and product systems.
+
+## Core Skills
+
+- Product engineering from discovery through delivery and iteration.
+- Applied AI systems for real workflows, including employability tooling and job matching.
+- Mobile platforms, especially React Native and Expo-based student-facing services.
+- Research translation: turning academic, public science, sustainability, and data projects into usable web products.
+- Cloud delivery, service design, stakeholder collaboration, and maintainable engineering practices.
+
+## Selected Work
+
+- iLancaster: student-facing mobile platform work including Expo migration, check-in flows, digital passes, safety tooling, performance, and support visibility.
+- LUCA: careers AI assistant for CV review, cover letter feedback, interview practice, job description analysis, and progress support.
+- IceHunter front-end: research interface for iceberg detection outputs using map-based satellite and AI data.
+- Sustainable packaging tool: web tooling for eCommerce packaging decisions across cost, compliance, and environmental impact.
+- AuroraWatch UK refresh: public science platform modernisation for aurora data and alerts.
+- Prob_AI research hub: public research platform using Next.js, Mantine UI, AWS, integrations, and admin workflows.
+- Lexio, GMprentice, and JobMatch AI: product experiments and small SaaS offerings.
+
+## Site Map
+
+- Home: /
+- Writing: /blog
+- Products: /#products
+- University platforms: /#platforms
+- Contact: /contact
+
+## Contact And Profiles
+
+- GitHub: https://github.com/anthonyhumphreys
+- Twitter: https://twitter.com/aphumphreys

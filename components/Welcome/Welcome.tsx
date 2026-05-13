@@ -1,22 +1,30 @@
+import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import {
-  IconArrowRight,
-  IconBrain,
-  IconBrandLinkedin,
-  IconBuildingCommunity,
-  IconCloud,
-  IconDeviceGamepad2,
-  IconDeviceMobile,
-  IconExternalLink,
-  IconMap2,
-  IconPackage,
-  IconRocket,
-  IconSatellite,
-  IconSparkles,
-  IconUsers,
-} from '@tabler/icons-react';
+  ArrowRightIcon,
+  BrainIcon,
+  BriefcaseBusinessIcon,
+  CloudIcon,
+  ExternalLinkIcon,
+  Gamepad2Icon,
+  MapIcon,
+  PackageIcon,
+  RocketIcon,
+  SatelliteIcon,
+  SmartphoneIcon,
+  SparklesIcon,
+  UsersIcon,
+} from 'lucide-react';
 import Link from 'next/link';
-import classes from './Welcome.module.css';
 import { SocialButtons } from '../SocialButtons/SocialButtons';
+
+type PostPreview = {
+  title: string;
+  id: string;
+  summary: string;
+};
 
 const strengths = [
   'Product engineering',
@@ -29,22 +37,22 @@ const strengths = [
 
 const highlights = [
   {
-    icon: IconDeviceMobile,
+    icon: SmartphoneIcon,
     title: 'Student-facing mobile platforms',
     copy: 'Modernising iLancaster with React Native, Expo, faster check-in flows, safety features, digital passes, and data-informed iteration.',
   },
   {
-    icon: IconBrain,
+    icon: BrainIcon,
     title: 'Applied AI that has to behave',
     copy: 'Building tools like LUCA that support real student workflows: CV review, interview practice, job description analysis, and progress tracking.',
   },
   {
-    icon: IconBuildingCommunity,
+    icon: BriefcaseBusinessIcon,
     title: 'Research and innovation delivery',
     copy: 'Turning academic and partner ideas into usable products: maps, public platforms, data tools, admin systems, and prototypes.',
   },
   {
-    icon: IconCloud,
+    icon: CloudIcon,
     title: 'End-to-end product ownership',
     copy: 'Taking ideas from discovery and workshops through architecture, implementation, deployment, feedback, and maintenance.',
   },
@@ -52,21 +60,21 @@ const highlights = [
 
 const products = [
   {
-    icon: IconRocket,
+    icon: RocketIcon,
     title: 'Lexio',
     type: 'Product studio',
     href: 'https://www.lexio.app/',
     copy: 'A home for subscription apps and bespoke builds: products for developers, creators, internal tools, prototypes, and integrations.',
   },
   {
-    icon: IconDeviceGamepad2,
+    icon: Gamepad2Icon,
     title: 'GMprentice',
     type: 'AI product',
     href: 'https://www.gmprentice.app/',
     copy: 'A sandbox for tabletop GMs to practise with AI adventurers: party generation, character voice, dice, initiative, secrets, and session flow.',
   },
   {
-    icon: IconSparkles,
+    icon: SparklesIcon,
     title: 'JobMatch AI',
     type: 'Personal workflow tool',
     href: 'https://personal-job-board-ivory.vercel.app/',
@@ -76,42 +84,42 @@ const products = [
 
 const universityWork = [
   {
-    icon: IconBrain,
+    icon: BrainIcon,
     title: 'LUCA',
     type: 'Careers AI assistant',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_innovationhub-lancasteruniversity-stemeducation-activity-7439319152944676864-chvI',
     copy: 'A Lancaster University careers pilot for independent employability practice: CV and cover letter review, interview modes, feedback reports, and LinkedIn recommendations.',
   },
   {
-    icon: IconDeviceMobile,
+    icon: SmartphoneIcon,
     title: 'iLancaster',
     type: 'Mobile platform',
     href: 'https://www.linkedin.com/pulse/ilancaster-evolving-together-through-co-production-zzsle',
     copy: 'A daily companion for campus life, evolved through co-production and data: Expo migration, performance work, check-in improvements, digital passes, safety tooling, and support visibility.',
   },
   {
-    icon: IconMap2,
+    icon: MapIcon,
     title: 'IceHunter front-end',
     type: 'Research interface',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_lancasteruniversity-innovation-icehunter-activity-7452265127137107968-YQ5Q',
     copy: 'A map interface for iceberg detection research, turning satellite radar and AI outputs into accessible location data for potential maritime use.',
   },
   {
-    icon: IconPackage,
+    icon: PackageIcon,
     title: 'Sustainable packaging tool',
     type: 'Research-to-product',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_lancaster-team-developing-programme-to-help-activity-7396521023522852864-hgzr',
     copy: 'A web tool helping eCommerce businesses make data-driven packaging decisions that balance cost, compliance, and environmental impact.',
   },
   {
-    icon: IconSatellite,
+    icon: SatelliteIcon,
     title: 'AuroraWatch UK refresh',
     type: 'Public science platform',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_aurorawatchuk-aurora-scienceforeveryone-activity-7426595855639482368-S0qd',
     copy: 'A modernisation project for a public-facing aurora platform built around real-time and historical data, alerts, and wider access to science.',
   },
   {
-    icon: IconUsers,
+    icon: UsersIcon,
     title: 'Prob_AI research hub',
     type: 'Research web platform',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_innovationhub-probai-partnerships-activity-7332661773864488964-16S8',
@@ -127,157 +135,254 @@ const principles = [
   'Prefer evidence from users, data, and delivery over theatre. Theatre has excellent lighting and terrible uptime.',
 ];
 
-export function Welcome() {
+function SectionIntro({ title, copy }: { title: string; copy: string }) {
   return (
-    <main className={classes.page}>
-      <section className={classes.hero}>
-        <div className={classes.heroInner}>
-          <div className={classes.heroCopy}>
-            <h1>Building useful software across AI, mobile, research and product systems</h1>
-            <p>
+    <div className="max-w-3xl">
+      <h2 className="text-balance text-4xl font-extrabold tracking-tight text-foreground md:text-6xl">
+        {title}
+      </h2>
+      <p className="mt-4 text-lg leading-8 text-muted-foreground">{copy}</p>
+    </div>
+  );
+}
+
+export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
+  return (
+    <main
+      id="main-content"
+      className="overflow-x-hidden bg-[linear-gradient(180deg,color-mix(in_oklab,var(--muted),transparent_12%),transparent_34rem)]"
+    >
+      <section className="border-b">
+        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-6xl gap-12 py-14 md:w-[calc(100%-3rem)] md:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] md:items-center md:py-20">
+          <div className="min-w-0">
+            <h1 className="max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+              Building useful software across AI, mobile, research and product systems
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground md:text-2xl">
               I work across the full arc of product engineering: discovery, architecture,
               implementation, delivery, and iteration. The common thread is making complicated ideas
               usable for real people.
             </p>
-            <div className={classes.heroActions}>
-              <Link href="#products" className={classes.primaryAction}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="#products" className={buttonVariants({ size: 'lg' })}>
                 Explore the work
-                <IconArrowRight aria-hidden="true" />
+                <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
               </Link>
-              <Link href="#platforms" className={classes.secondaryAction}>
+              <Link
+                href="#platforms"
+                className={buttonVariants({ variant: 'outline', size: 'lg' })}
+              >
                 See university platforms
               </Link>
             </div>
           </div>
 
-          <div className={classes.heroPanel} aria-label="Anthony Humphreys capability summary">
-            <div className={classes.panelTopline}>
-              <span>Anthony Humphreys</span>
-              <span>Product-minded senior developer</span>
-            </div>
-            <div className={classes.terminal}>
-              <span>const practice = &#123;</span>
-              <span> products: &apos;Lexio, GMprentice, JobMatch AI&apos;,</span>
-              <span> platforms: &apos;iLancaster, LUCA, research tools&apos;,</span>
-              <span> approach: &apos;make the useful thing real&apos;</span>
-              <span>&#125;;</span>
-            </div>
-            <div className={classes.panelFooter}>
-              <div>
-                <strong>Range</strong>
-                <span>AI, mobile, web, cloud</span>
+          <Card className="-rotate-1 overflow-hidden bg-card/88 shadow-2xl shadow-foreground/10 transition-transform duration-200 hover:rotate-0 hover:-translate-y-1">
+            <CardHeader className="grid grid-cols-[1fr_auto] gap-4 bg-[linear-gradient(color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px)] [background-size:1.75rem_1.75rem]">
+              <CardTitle className="text-sm">Anthony Humphreys</CardTitle>
+              <CardDescription className="font-semibold">
+                Product-minded senior developer
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="bg-[linear-gradient(color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px)] [background-size:1.75rem_1.75rem]">
+              <pre className="overflow-x-auto rounded-lg bg-[#071416] p-5 text-[0.72rem] leading-6 text-[#dceceb] shadow-xl md:text-sm">
+                <code>
+                  <span className="text-accent">interface</span>{' '}
+                  <span className="text-primary">Founder</span>{' '}
+                  <span className="text-accent">extends</span>{' '}
+                  <span className="text-primary">SeniorDev</span> {'{'}
+                  {'\n'}
+                  {'  '}range:{' '}
+                  <span className="text-accent">&apos;idea to shipped system&apos;</span>;{'\n'}
+                  {'  '}edge:{' '}
+                  <span className="text-accent">&apos;product sense + delivery&apos;</span>;{'\n'}
+                  {'}'}
+                  {'\n\n'}
+                  <span className="text-accent">const</span> anthony:{' '}
+                  <span className="text-primary">Founder</span> = {'{'}
+                  {'\n'}
+                  {'  '}builds: [&apos;AI&apos;, &apos;mobile&apos;, &apos;cloud&apos;],
+                  {'\n'}
+                  {'  '}leads: &apos;discovery to delivery&apos;,
+                  {'\n'}
+                  {'  '}brings: &apos;clarity to complex work&apos;,
+                  {'\n'}
+                  {'  '}bias: &apos;make the useful thing real&apos;
+                  {'\n'}
+                  {'};'}
+                </code>
+              </pre>
+              <div className="mt-6 grid grid-cols-2 gap-6 text-sm">
+                <div>
+                  <strong>Range</strong>
+                  <p className="mt-1 font-semibold text-muted-foreground">AI, mobile, web, cloud</p>
+                </div>
+                <div>
+                  <strong>Mode</strong>
+                  <p className="mt-1 font-semibold text-muted-foreground">
+                    Discovery to shipped product
+                  </p>
+                </div>
               </div>
-              <div>
-                <strong>Mode</strong>
-                <span>Discovery to shipped product</span>
-              </div>
-            </div>
-          </div>
+              <div className="mt-6 ml-auto h-1.5 w-24 bg-accent" aria-hidden="true" />
+            </CardContent>
+          </Card>
         </div>
 
-        <div className={classes.proofStrip} aria-label="Core capabilities">
+        <div className="mx-auto flex w-[calc(100%-2rem)] max-w-6xl flex-wrap gap-2 pb-8 md:w-[calc(100%-3rem)]">
           {strengths.map((item) => (
-            <span key={item}>{item}</span>
+            <Badge variant="outline" key={item}>
+              {item}
+            </Badge>
           ))}
         </div>
       </section>
 
-      <section className={classes.section} id="experience">
-        <div className={classes.sectionIntro}>
-          <h2>Capabilities with receipts</h2>
-          <p>
-            The work spans student services, AI assistants, public research platforms, internal
-            tools, subscription products, and the unglamorous engineering that keeps them usable
-            after launch.
-          </p>
-        </div>
-        <div className={classes.highlightGrid}>
+      <section className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-20 md:w-[calc(100%-3rem)]">
+        <SectionIntro
+          title="Capabilities with receipts"
+          copy="The work spans student services, AI assistants, public research platforms, internal tools, subscription products, and the unglamorous engineering that keeps them usable after launch."
+        />
+        <div className="mt-10 grid border md:grid-cols-4">
           {highlights.map(({ icon: Icon, title, copy }) => (
-            <article className={classes.highlight} key={title}>
-              <Icon aria-hidden="true" />
-              <h3>{title}</h3>
-              <p>{copy}</p>
+            <article className="min-h-64 border-b p-6 md:border-r md:border-b-0" key={title}>
+              <Icon aria-hidden="true" className="text-primary" />
+              <h3 className="mt-7 text-lg font-bold leading-tight">{title}</h3>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className={classes.caseSection} id="products">
-        <div className={classes.sectionIntro}>
-          <h2>Products and experiments</h2>
-          <p>
-            Lexio is where I ship focused software outside the university context: small products,
-            AI workflows, developer tools, and prototypes that force the useful questions early.
-          </p>
-        </div>
-        <div className={classes.caseList}>
+      <section
+        className="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t py-20 md:w-[calc(100%-3rem)]"
+        id="products"
+      >
+        <SectionIntro
+          title="Products and experiments"
+          copy="Lexio is where I ship focused software: small products, AI workflows, developer tools, and prototypes that flex my developer skills and keep my brain sharp."
+        />
+        <div className="mt-10 flex flex-col">
           {products.map((product, index) => (
-            <a className={classes.caseItem} href={product.href} key={product.title}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <product.icon aria-hidden="true" />
-              <div>
-                <p>{product.type}</p>
-                <h3>{product.title}</h3>
-                <small>{product.copy}</small>
+            <a
+              className="group grid grid-cols-[2rem_1fr_1.5rem] gap-4 border-b py-6 text-foreground transition-transform hover:translate-x-1 md:grid-cols-[3.5rem_2.5rem_1fr_2rem] md:gap-6"
+              href={product.href}
+              key={product.title}
+            >
+              <span className="text-sm font-black text-accent">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <product.icon aria-hidden="true" className="hidden text-primary md:block" />
+              <div className="min-w-0">
+                <p className="text-xs font-extrabold uppercase tracking-wide text-primary">
+                  {product.type}
+                </p>
+                <h3 className="mt-1 text-3xl font-extrabold leading-none">{product.title}</h3>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground md:text-base">
+                  {product.copy}
+                </p>
               </div>
-              <IconExternalLink aria-hidden="true" />
+              <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
             </a>
           ))}
         </div>
       </section>
 
-      <section className={classes.fitSection} id="platforms">
-        <div className={classes.sectionIntro}>
-          <h2>University platforms and research translation</h2>
-          <p>
-            A lot of the interesting work happens between disciplines: careers, mobile services,
-            sustainability, physics, public science, research visibility, and practical AI.
-          </p>
-        </div>
-        <div className={classes.workGrid}>
+      <section
+        className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-20 md:w-[calc(100%-3rem)]"
+        id="platforms"
+      >
+        <SectionIntro
+          title="University platforms and research translation"
+          copy="A lot of the interesting work happens between disciplines: careers, mobile services, sustainability, physics, public science, research visibility, and practical AI."
+        />
+        <div className="mt-10 grid border md:grid-cols-3">
           {universityWork.map(({ icon: Icon, title, type, href, copy }) => (
-            <a className={classes.workItem} href={href} key={title}>
-              <div>
-                <Icon aria-hidden="true" />
-                <IconBrandLinkedin aria-hidden="true" />
+            <a
+              className="group min-h-72 border-b p-6 text-foreground transition-colors hover:bg-muted/45 md:border-r"
+              href={href}
+              key={title}
+            >
+              <div className="flex items-center justify-between gap-4">
+                <Icon aria-hidden="true" className="text-primary" />
+                <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
               </div>
-              <p>{type}</p>
-              <h3>{title}</h3>
-              <small>{copy}</small>
+              <p className="mt-7 text-xs font-extrabold uppercase tracking-wide text-primary">
+                {type}
+              </p>
+              <h3 className="mt-2 text-2xl font-bold leading-tight">{title}</h3>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">{copy}</p>
             </a>
           ))}
         </div>
       </section>
 
-      <section className={classes.principlesSection}>
-        <div className={classes.fitCard}>
-          <div>
-            <IconRocket aria-hidden="true" />
-            <h2>How I tend to work</h2>
-            <p>
+      <section className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-16 md:w-[calc(100%-3rem)]">
+        <Card className="grid gap-8 bg-card text-card-foreground md:grid-cols-[0.8fr_1fr]">
+          <CardHeader>
+            <RocketIcon aria-hidden="true" className="text-primary" />
+            <CardTitle className="text-4xl font-extrabold tracking-tight">
+              How I tend to work
+            </CardTitle>
+            <CardDescription>
               Strong technical work is rarely just code. It is judgement, collaboration, trade-offs,
               communication, and enough taste to know when an abstraction has wandered into
               self-importance.
-            </p>
-          </div>
-          <ul>
-            {principles.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ul className="flex flex-col gap-3">
+              {principles.map((item) => (
+                <li className="border-l-3 border-accent bg-muted/45 p-3 text-sm" key={item}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
       </section>
 
-      <section className={classes.contactSection} id="contact">
-        <h2>More work, writing, and traces of what I&apos;m building</h2>
-        <p>
+      <section
+        className="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t py-20 md:w-[calc(100%-3rem)]"
+        id="writing"
+      >
+        <SectionIntro
+          title="Notes from the workbench"
+          copy="Short-form thinking on products, engineering judgement, AI, delivery, and whatever technical decision currently deserves a raised eyebrow."
+        />
+        {posts.length > 0 ? (
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {posts.map((post) => (
+              <Link href={`/blog/posts/${post.id}`} key={post.id}>
+                <Card className="h-full transition-transform hover:-translate-y-1">
+                  <CardHeader>
+                    <CardTitle>{post.title}</CardTitle>
+                    <CardDescription>{post.summary}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <Card className="mt-8 max-w-xl">
+            <CardContent>Writing is warming up. Markdown goes here.</CardContent>
+          </Card>
+        )}
+      </section>
+
+      <section className="mx-auto w-[calc(100%-2rem)] max-w-4xl py-16 text-center md:w-[calc(100%-3rem)]">
+        <Separator className="mb-12" />
+        <h2 className="text-balance text-4xl font-extrabold tracking-tight md:text-5xl">
+          More work, writing, and traces of what I&apos;m building
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">
           This site is a working notebook for products, platforms, ideas, and the occasional
           technical opinion with its sleeves rolled up.
         </p>
-        <div className={classes.contactActions}>
-          <Link href="/blog" className={classes.primaryAction}>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link href="/blog" className={buttonVariants()}>
             Read the writing
-            <IconArrowRight aria-hidden="true" />
+            <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
           </Link>
           <SocialButtons />
         </div>

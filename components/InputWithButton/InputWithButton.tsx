@@ -1,22 +1,14 @@
-'use client';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { ArrowRightIcon } from 'lucide-react';
 
-import { ActionIcon, TextInput, TextInputProps, rem, useMantineTheme } from '@mantine/core';
-import { IconArrowRight } from '@tabler/icons-react';
-
-export function InputWithButton(props: TextInputProps) {
-  const theme = useMantineTheme();
-
+export function InputWithButton(props: React.ComponentProps<typeof Input>) {
   return (
-    <TextInput
-      radius="xl"
-      size="md"
-      rightSectionWidth={42}
-      rightSection={
-        <ActionIcon size={32} radius="xl" color={theme.primaryColor} variant="filled">
-          <IconArrowRight style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-        </ActionIcon>
-      }
-      {...props}
-    />
+    <div className="flex items-center gap-2">
+      <Input {...props} />
+      <Button type="button" size="icon" aria-label="Submit">
+        <ArrowRightIcon aria-hidden="true" />
+      </Button>
+    </div>
   );
 }

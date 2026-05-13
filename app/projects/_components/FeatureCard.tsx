@@ -1,34 +1,23 @@
-'use client';
-import { Card, rem, useMantineTheme, Text } from '@mantine/core';
-import classes from './FeatureCard.module.css';
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
 
 export type Feature = {
   title: string;
   description: string;
-  icon: React.FC<any>;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
   slug: string;
 };
 
 export default function FeatureCard({ title, description, icon: Icon, slug }: Feature) {
-  const theme = useMantineTheme();
-
   return (
-    <Card
-      key={title}
-      shadow="md"
-      radius="md"
-      className={classes.card}
-      padding="xl"
-      component="a"
-      href={`ai-scrum-assistant/${slug}`}
-    >
-      <Icon style={{ width: rem(50), height: rem(50) }} stroke={2} color={theme.colors.blue[6]} />
-      <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
-        {title}
-      </Text>
-      <Text fz="sm" c="dimmed" mt="sm">
-        {description}
-      </Text>
-    </Card>
+    <Link href={`ai-scrum-assistant/${slug}`} className="block">
+      <Card className="h-full transition-transform hover:-translate-y-1">
+        <CardHeader>
+          <Icon aria-hidden="true" className="text-primary" />
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
   );
 }

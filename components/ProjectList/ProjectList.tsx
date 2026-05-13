@@ -1,23 +1,23 @@
-import { Card, Container, SimpleGrid, Text, Title, rem, useMantineTheme } from '@mantine/core';
+import { Badge } from '@/components/ui/badge';
 import {
-  IconDeviceGamepad2,
-  IconRocket,
-  IconSparkles,
-  IconTopologyStar3,
-} from '@tabler/icons-react';
-import classes from './ProjectList.module.css';
-
-interface ProjectProps {
-  icon: React.FC<any>;
-  title: string;
-  description: string;
-  href: string;
-  status: string;
-}
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  ExternalLinkIcon,
+  Gamepad2Icon,
+  RocketIcon,
+  SparklesIcon,
+  WorkflowIcon,
+} from 'lucide-react';
 
 export const projectList = [
   {
-    icon: IconRocket,
+    icon: RocketIcon,
     title: 'Lexio',
     description:
       'Subscription apps and bespoke builds for developers, creators, prototypes, and integrations.',
@@ -25,7 +25,7 @@ export const projectList = [
     status: 'Live',
   },
   {
-    icon: IconDeviceGamepad2,
+    icon: Gamepad2Icon,
     title: 'GMprentice',
     description:
       'Practice tabletop GMing with AI adventurers, character tools, dice, initiative, and session flow.',
@@ -33,7 +33,7 @@ export const projectList = [
     status: 'Beta',
   },
   {
-    icon: IconSparkles,
+    icon: SparklesIcon,
     title: 'JobMatch AI',
     description:
       'An AI-powered job board that parses a CV, searches for matching roles, and learns from feedback.',
@@ -41,7 +41,7 @@ export const projectList = [
     status: 'Live',
   },
   {
-    icon: IconTopologyStar3,
+    icon: WorkflowIcon,
     title: 'Spark',
     description:
       'AI-assisted architecture planning for mapping dependencies and validating technical decisions.',
@@ -50,56 +50,44 @@ export const projectList = [
   },
 ];
 
-export function Project({ icon: Icon, title, description, href, status }: ProjectProps) {
-  const theme = useMantineTheme();
-  return (
-    <Card
-      key={title}
-      shadow="md"
-      radius="md"
-      className={classes.card}
-      padding="xl"
-      component="a"
-      href={href}
-    >
-      <Icon style={{ width: rem(50), height: rem(50) }} stroke={2} color={theme.colors.blue[6]} />
-      <Text fz="xs" fw={800} c="teal" mt="md" tt="uppercase">
-        {status}
-      </Text>
-      <Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
-        {title}
-      </Text>
-      <Text fz="sm" c="dimmed" mt="sm">
-        {description}
-      </Text>
-    </Card>
-  );
-}
-
 export function ProjectGrid() {
-  const features = projectList.map((feature, index) => <Project {...feature} key={index} />);
-
   return (
-    <Container className={classes.wrapper}>
-      <Title order={2} className={classes.title} ta="center" mt="sm">
-        Products and experiments
-      </Title>
-
-      <Container size={560} p={0}>
-        <Text size="sm" className={classes.description}>
+    <main
+      id="main-content"
+      className="mx-auto min-h-[calc(100vh-4rem)] w-[calc(100%-2rem)] max-w-6xl py-14 md:w-[calc(100%-3rem)] md:py-20"
+    >
+      <div className="max-w-3xl">
+        <h1 className="text-balance text-5xl font-black leading-none tracking-tight md:text-7xl">
+          Products And Experiments
+        </h1>
+        <p className="mt-5 text-lg leading-8 text-muted-foreground">
           Current Lexio products and experiments: small, focused software that tests product ideas,
           AI workflows, and developer-facing tools in the real world.
-        </Text>
-      </Container>
+        </p>
+      </div>
 
-      <SimpleGrid
-        mt={60}
-        cols={{ base: 1, sm: 2, md: 3 }}
-        spacing={{ base: 'xl', md: 50 }}
-        verticalSpacing={{ base: 'xl', md: 50 }}
-      >
-        {features}
-      </SimpleGrid>
-    </Container>
+      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {projectList.map(({ icon: Icon, title, description, href, status }) => (
+          <a href={href} key={title} className="block">
+            <Card className="h-full transition-transform hover:-translate-y-1">
+              <CardHeader>
+                <Icon aria-hidden="true" className="text-primary" />
+                <CardAction>
+                  <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
+                </CardAction>
+                <Badge variant="secondary" className="w-fit">
+                  {status}
+                </Badge>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Product thinking, technical judgement, and delivery pressure in one small box.
+              </CardContent>
+            </Card>
+          </a>
+        ))}
+      </div>
+    </main>
   );
 }

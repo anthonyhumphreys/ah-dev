@@ -1,11 +1,6 @@
-import { Button, ButtonProps, Group } from '@mantine/core';
-import {
-  IconBrandDiscord,
-  IconBrandGithub,
-  IconBrandTwitch,
-  IconBrandTwitter,
-} from '@tabler/icons-react';
-import { useMemo } from 'react';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { Code2Icon, MessageCircleIcon, RadioIcon, SendIcon } from 'lucide-react';
 
 export const SocialProviderLinks = {
   Twitter: 'https://twitter.com/aphumphreys',
@@ -14,47 +9,35 @@ export const SocialProviderLinks = {
   Twitch: 'https://www.twitch.tv/anthonyhumphreys',
 };
 
-type SocialButtonProps = {
-  channel: keyof typeof SocialProviderLinks;
+const socialIcons = {
+  Twitter: SendIcon,
+  GitHub: Code2Icon,
+  Discord: MessageCircleIcon,
+  Twitch: RadioIcon,
 };
 
-export function SocialButton(
-  props: ButtonProps & React.ComponentPropsWithoutRef<'a'> & SocialButtonProps
-) {
-  const Icon = useMemo(() => {
-    switch (props.channel) {
-      case 'Twitter':
-        return <IconBrandTwitter style={{ width: '1rem', height: '1rem' }} />;
-      case 'GitHub':
-        return <IconBrandGithub style={{ width: '1rem', height: '1rem' }} />;
-      case 'Discord':
-        return <IconBrandDiscord style={{ width: '1rem', height: '1rem' }} />;
-      case 'Twitch':
-        return <IconBrandTwitch style={{ width: '1rem', height: '1rem' }} />;
-      default:
-        return <></>;
-    }
-  }, [props.channel]);
+export function SocialButton({ channel }: { channel: keyof typeof SocialProviderLinks }) {
+  const Icon = socialIcons[channel];
+
   return (
-    <Button
-      {...props}
-      component="a"
-      href={SocialProviderLinks[props.channel]}
+    <a
+      className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'w-full sm:w-auto')}
+      href={SocialProviderLinks[channel]}
       target="_blank"
-      rel="noreferrer"
-      leftSection={Icon}
-    />
+      rel="noopener noreferrer"
+    >
+      <Icon data-icon="inline-start" aria-hidden="true" />
+      {channel}
+    </a>
   );
 }
 
 export function SocialButtons() {
   return (
-    <Group justify="center" p="md">
+    <div className="grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto">
       {Object.keys(SocialProviderLinks).map((channel) => (
-        <SocialButton key={channel} channel={channel as keyof typeof SocialProviderLinks}>
-          {channel}
-        </SocialButton>
+        <SocialButton key={channel} channel={channel as keyof typeof SocialProviderLinks} />
       ))}
-    </Group>
+    </div>
   );
 }

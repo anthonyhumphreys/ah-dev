@@ -12,7 +12,7 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
   reactStrictMode: false,
   experimental: {
-    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
+    optimizePackageImports: ['lucide-react'],
   },
 };
 

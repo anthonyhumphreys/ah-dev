@@ -1,7 +1,9 @@
 import { Welcome } from './Welcome';
 
-export default {
+const meta = {
   title: 'Welcome',
 };
+
+export default meta;
 
 export const Usage = () => <Welcome />;
