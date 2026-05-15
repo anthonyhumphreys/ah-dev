@@ -10,7 +10,7 @@ import {
   CommandShortcut,
 } from '@/components/ui/command';
 import { toast } from 'sonner';
-import { BriefcaseBusinessIcon, FileTextIcon, MailIcon, RocketIcon } from 'lucide-react';
+import { BriefcaseBusinessIcon, CloudIcon, FileTextIcon, MailIcon, RocketIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -29,16 +29,22 @@ const konamiKeys = [
 
 const actions = [
   {
-    label: 'Explore Product Work',
-    description: 'Jump to products and experiments',
+    label: 'Explore Builds',
+    description: 'Jump to builds and experiments',
     href: '/#products',
     icon: RocketIcon,
   },
   {
     label: 'Review Experience',
-    description: 'See capabilities and delivery range',
+    description: 'See capabilities and recent work',
     href: '/#experience',
     icon: BriefcaseBusinessIcon,
+  },
+  {
+    label: 'Open Technical Leadership',
+    description: 'Read architecture and delivery principles',
+    href: '/technical-leadership',
+    icon: CloudIcon,
   },
   {
     label: 'Open Writing',

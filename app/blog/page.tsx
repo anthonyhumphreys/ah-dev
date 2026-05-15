@@ -1,11 +1,12 @@
 import CardGradient from '@/components/BlogCard/CardGradient';
+import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getSortedPostsData, type PostMeta } from '@/utils/posts';
 
 export const metadata = {
   title: 'Writing | Anthony Humphreys',
   description:
-    'Notes from Anthony Humphreys on product engineering, AI systems, mobile platforms, and research translation.',
+    'Notes from Anthony Humphreys on software delivery, AI systems, mobile platforms, and research tools.',
 };
 
 export default function Home() {
@@ -21,9 +22,15 @@ export default function Home() {
           Writing
         </h1>
         <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">
-          Notes on product engineering, AI, mobile platforms, delivery, and the occasional decision
-          that looked better in the meeting than in the codebase.
+          Notes on software delivery, AI, mobile platforms, research tools, and the occasional
+          decision that looked better in the meeting than in the codebase.
         </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          <Badge variant="outline">Decision notes</Badge>
+          <Badge variant="outline">Architecture notes</Badge>
+          <Badge variant="outline">Applied AI</Badge>
+          <Badge variant="outline">Delivery notes</Badge>
+        </div>
       </div>
       {allPostsData.length > 0 ? (
         <div className="mt-6 flex flex-col gap-3">

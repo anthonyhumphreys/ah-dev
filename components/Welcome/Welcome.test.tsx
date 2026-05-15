@@ -6,11 +6,11 @@ describe('Welcome component', () => {
     render(<Welcome />);
     expect(
       screen.getByRole('heading', {
-        name: /building useful software across ai, mobile, research and product systems/i,
+        name: /building useful software for messy real-world work/i,
       })
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/making complicated ideas usable for real people/i)
+      screen.getByText(/keeping it understandable for the team that owns it next/i)
     ).toBeInTheDocument();
   });
 });

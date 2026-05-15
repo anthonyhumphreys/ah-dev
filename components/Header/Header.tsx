@@ -16,10 +16,10 @@ import { CommandIcon, MenuIcon } from 'lucide-react';
 import Link from 'next/link';
 
 const navItems = [
-  { label: 'Experience', href: '/#experience' },
-  { label: 'Products', href: '/#products' },
-  { label: 'Platforms', href: '/#platforms' },
+  { label: 'Work', href: '/#products' },
+  { label: 'Technical Leadership', href: '/technical-leadership' },
   { label: 'Writing', href: '/blog' },
+  { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 

@@ -1,14 +1,17 @@
 # Anthony Humphreys
 
-Anthony Humphreys is a product-minded senior developer building useful software across AI, mobile, research, and product systems.
+Anthony Humphreys is a senior developer building applied AI tools, mobile platforms, AWS-backed services, and research software.
 
 ## Core Skills
 
-- Product engineering from discovery through delivery and iteration.
+- Software delivery from discovery through implementation, release, and iteration.
+- Technical leadership: turning ambiguous goals into practical technical options.
+- AWS architecture judgement, supported by AWS Certified Solutions Architect - Professional.
 - Applied AI systems for real workflows, including employability tooling and job matching.
 - Mobile platforms, especially React Native and Expo-based student-facing services.
-- Research translation: turning academic, public science, sustainability, and data projects into usable web products.
+- Research translation: turning academic, public science, sustainability, and data projects into usable web software.
 - Cloud delivery, service design, stakeholder collaboration, and maintainable engineering practices.
+- Delivery maturity across implementation, observability, handover, operations, and service ownership.
 
 ## Selected Work
 
@@ -17,15 +20,23 @@ Anthony Humphreys is a product-minded senior developer building useful software 
 - IceHunter front-end: research interface for iceberg detection outputs using map-based satellite and AI data.
 - Sustainable packaging tool: web tooling for eCommerce packaging decisions across cost, compliance, and environmental impact.
 - AuroraWatch UK refresh: public science platform modernisation for aurora data and alerts.
-- Prob_AI research hub: public research platform using Next.js, Mantine UI, AWS, integrations, and admin workflows.
-- Lexio, GMprentice, and JobMatch AI: product experiments and small SaaS offerings.
+- Prob_AI research hub: public research site using Next.js, Mantine UI, AWS, integrations, and admin workflows.
+- Lexio, GMprentice, and JobMatch AI: small software experiments and SaaS offerings.
+
+## Technical Leadership
+
+Anthony works on the messy bit between the idea and the running system: clarifying goals, identifying risky assumptions, shaping architecture, and keeping delivery plans connected to the teams who will operate and change the system afterwards.
+
+Architecture interests include serverless and cloud-native systems, event-driven design, identity and permissions, data flow, deployment, observability, reliability, failure modes, cost control, and operational support.
 
 ## Site Map
 
 - Home: /
+- Technical Leadership: /technical-leadership
 - Writing: /blog
-- Products: /#products
+- Work: /#products
 - University platforms: /#platforms
+- About: /about
 - Contact: /contact
 
 ## Contact And Profiles

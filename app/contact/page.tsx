@@ -51,8 +51,8 @@ export default function Contact() {
           Get in touch
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-          Useful conversations welcome: products, platforms, AI systems, research translation, and
-          roles where senior engineering judgement is the point rather than the garnish.
+          Useful conversations welcome: software, platforms, AI systems, research tools, and roles
+          where senior engineering judgement is the point rather than the garnish.
         </p>
       </div>
 

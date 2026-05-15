@@ -7,12 +7,15 @@ import {
   BrainIcon,
   BriefcaseBusinessIcon,
   CloudIcon,
+  CompassIcon,
   ExternalLinkIcon,
   Gamepad2Icon,
+  GaugeIcon,
   MapIcon,
   PackageIcon,
   RocketIcon,
   SatelliteIcon,
+  ShieldCheckIcon,
   SmartphoneIcon,
   SparklesIcon,
   UsersIcon,
@@ -27,12 +30,12 @@ type PostPreview = {
 };
 
 const strengths = [
-  'Product engineering',
+  'Useful software',
   'AI systems',
   'Mobile platforms',
-  'Research translation',
+  'Research tools',
   'Service design',
-  'Cloud delivery',
+  'AWS delivery',
 ];
 
 const highlights = [
@@ -49,12 +52,35 @@ const highlights = [
   {
     icon: BriefcaseBusinessIcon,
     title: 'Research and innovation delivery',
-    copy: 'Turning academic and partner ideas into usable products: maps, public platforms, data tools, admin systems, and prototypes.',
+    copy: 'Turning academic and partner ideas into usable software: maps, public platforms, data tools, admin systems, and prototypes.',
   },
   {
     icon: CloudIcon,
-    title: 'End-to-end product ownership',
-    copy: 'Taking ideas from discovery and workshops through architecture, implementation, deployment, feedback, and maintenance.',
+    title: 'Architecture that can be owned',
+    copy: 'Taking ideas from discovery and workshops through implementation, deployment, feedback, and maintenance without losing the people who run it.',
+  },
+];
+
+const deliveryCards = [
+  {
+    icon: CompassIcon,
+    title: 'Problem framing',
+    copy: 'Turning uncertain ideas into practical options, including what to test first and what to leave alone for now.',
+  },
+  {
+    icon: ShieldCheckIcon,
+    title: 'AWS architecture',
+    copy: 'Designing secure, cost-aware, maintainable cloud systems with reliability, migration, permissions, and operational support in view.',
+  },
+  {
+    icon: GaugeIcon,
+    title: 'Delivery judgement',
+    copy: 'Keeping implementation, observability, release confidence, handover, and day-two ownership connected from the start.',
+  },
+  {
+    icon: BrainIcon,
+    title: 'Applied AI systems',
+    copy: 'Building AI features around usefulness, trust, evaluation, privacy, and cost instead of letting the demo write cheques the service cannot cash.',
   },
 ];
 
@@ -62,16 +88,18 @@ const products = [
   {
     icon: RocketIcon,
     title: 'Lexio',
-    type: 'Product studio',
+    type: 'Software studio',
     href: 'https://www.lexio.app/',
-    copy: 'A home for subscription apps and bespoke builds: products for developers, creators, internal tools, prototypes, and integrations.',
+    copy: 'A home for subscription apps and bespoke builds for developers, creators, internal tools, prototypes, and integrations.',
+    note: 'Keeping small builds tied to a real user job, a testable assumption, and enough restraint that the experiment can actually ship.',
   },
   {
     icon: Gamepad2Icon,
     title: 'GMprentice',
-    type: 'AI product',
+    type: 'AI tool',
     href: 'https://www.gmprentice.app/',
     copy: 'A sandbox for tabletop GMs to practise with AI adventurers: party generation, character voice, dice, initiative, secrets, and session flow.',
+    note: 'Focused on rehearsal and feedback for live facilitation, not another content generator wearing a wizard hat.',
   },
   {
     icon: SparklesIcon,
@@ -79,6 +107,7 @@ const products = [
     type: 'Personal workflow tool',
     href: 'https://personal-job-board-ivory.vercel.app/',
     copy: 'An AI-powered job board that parses a CV, learns preferences, searches for relevant roles, and improves from user feedback.',
+    note: 'Testing whether matching, explanations, and feedback loops can make job search less like feeding a CV into a paper shredder.',
   },
 ];
 
@@ -89,6 +118,7 @@ const universityWork = [
     type: 'Careers AI assistant',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_innovationhub-lancasteruniversity-stemeducation-activity-7439319152944676864-chvI',
     copy: 'A Lancaster University careers pilot for independent employability practice: CV and cover letter review, interview modes, feedback reports, and LinkedIn recommendations.',
+    note: 'Applying AI in a university service context, balancing usefulness, trust, safety, evaluation, privacy, and operational cost.',
   },
   {
     icon: SmartphoneIcon,
@@ -96,6 +126,7 @@ const universityWork = [
     type: 'Mobile platform',
     href: 'https://www.linkedin.com/pulse/ilancaster-evolving-together-through-co-production-zzsle',
     copy: 'A daily companion for campus life, evolved through co-production and data: Expo migration, performance work, check-in improvements, digital passes, safety tooling, and support visibility.',
+    note: 'Maintaining and evolving a high-visibility student platform where reliability, accessibility, release confidence, and institutional service ownership matter as much as feature delivery.',
   },
   {
     icon: MapIcon,
@@ -103,13 +134,15 @@ const universityWork = [
     type: 'Research interface',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_lancasteruniversity-innovation-icehunter-activity-7452265127137107968-YQ5Q',
     copy: 'A map interface for iceberg detection research, turning satellite radar and AI outputs into accessible location data for potential maritime use.',
+    note: 'Translating specialist research outputs into a usable interface where uncertainty, map interaction, and public-facing interpretation need careful handling.',
   },
   {
     icon: PackageIcon,
     title: 'Sustainable packaging tool',
-    type: 'Research-to-product',
+    type: 'Research tool',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_lancaster-team-developing-programme-to-help-activity-7396521023522852864-hgzr',
     copy: 'A web tool helping eCommerce businesses make data-driven packaging decisions that balance cost, compliance, and environmental impact.',
+    note: 'Turning research and compliance complexity into decision support that helps businesses compare trade-offs instead of drowning in inputs.',
   },
   {
     icon: SatelliteIcon,
@@ -117,6 +150,7 @@ const universityWork = [
     type: 'Public science platform',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_aurorawatchuk-aurora-scienceforeveryone-activity-7426595855639482368-S0qd',
     copy: 'A modernisation project for a public-facing aurora platform built around real-time and historical data, alerts, and wider access to science.',
+    note: 'Modernising a public science service around access, data clarity, reliability, and a wider audience than the people already fluent in the domain.',
   },
   {
     icon: UsersIcon,
@@ -124,6 +158,7 @@ const universityWork = [
     type: 'Research web platform',
     href: 'https://www.linkedin.com/posts/innovation-hub-lancs_innovationhub-probai-partnerships-activity-7332661773864488964-16S8',
     copy: 'A public site for an EPSRC-funded AI research hub, built with Next.js, Mantine UI, AWS, university content integrations, and a lightweight admin workflow.',
+    note: 'Making collaboration, content ownership, AWS hosting, and long-term maintenance practical for a distributed programme.',
   },
 ];
 
@@ -156,12 +191,12 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
         <div className="mx-auto grid w-[calc(100%-2rem)] max-w-6xl gap-12 py-14 md:w-[calc(100%-3rem)] md:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] md:items-center md:py-20">
           <div className="min-w-0">
             <h1 className="max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Building useful software across AI, mobile, research and product systems
+              Building useful software for messy real-world work
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground md:text-2xl">
-              I work across the full arc of product engineering: discovery, architecture,
-              implementation, delivery, and iteration. The common thread is making complicated ideas
-              usable for real people.
+              I work from unclear goal to running service: framing the problem, choosing the
+              architecture, building the thing, and keeping it understandable for the team that owns
+              it next.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="#products" className={buttonVariants({ size: 'lg' })}>
@@ -180,9 +215,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
           <Card className="-rotate-1 overflow-hidden bg-card/88 shadow-2xl shadow-foreground/10 transition-transform duration-200 hover:rotate-0 hover:-translate-y-1">
             <CardHeader className="grid grid-cols-[1fr_auto] gap-4 bg-[linear-gradient(color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px)] [background-size:1.75rem_1.75rem]">
               <CardTitle className="text-sm">Anthony Humphreys</CardTitle>
-              <CardDescription className="font-semibold">
-                Product-minded senior developer
-              </CardDescription>
+              <CardDescription className="font-semibold">Senior developer</CardDescription>
             </CardHeader>
             <CardContent className="bg-[linear-gradient(color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px)] [background-size:1.75rem_1.75rem]">
               <pre className="overflow-x-auto rounded-lg bg-[#071416] p-5 text-[0.72rem] leading-6 text-[#dceceb] shadow-xl md:text-sm">
@@ -194,8 +227,8 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
                   {'\n'}
                   {'  '}range:{' '}
                   <span className="text-accent">&apos;idea to shipped system&apos;</span>;{'\n'}
-                  {'  '}edge:{' '}
-                  <span className="text-accent">&apos;product sense + delivery&apos;</span>;{'\n'}
+                  {'  '}edge: <span className="text-accent">&apos;judgement + delivery&apos;</span>;
+                  {'\n'}
                   {'}'}
                   {'\n\n'}
                   <span className="text-accent">const</span> anthony:{' '}
@@ -205,7 +238,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
                   {'\n'}
                   {'  '}leads: &apos;discovery to delivery&apos;,
                   {'\n'}
-                  {'  '}brings: &apos;clarity to complex work&apos;,
+                  {'  '}brings: &apos;clarity to vague work&apos;,
                   {'\n'}
                   {'  '}bias: &apos;make the useful thing real&apos;
                   {'\n'}
@@ -220,7 +253,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
                 <div>
                   <strong>Mode</strong>
                   <p className="mt-1 font-semibold text-muted-foreground">
-                    Discovery to shipped product
+                    Unclear brief to running service
                   </p>
                 </div>
               </div>
@@ -238,10 +271,13 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
         </div>
       </section>
 
-      <section className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-20 md:w-[calc(100%-3rem)]">
+      <section
+        className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-20 md:w-[calc(100%-3rem)]"
+        id="experience"
+      >
         <SectionIntro
           title="Capabilities with receipts"
-          copy="The work spans student services, AI assistants, public research platforms, internal tools, subscription products, and the unglamorous engineering that keeps them usable after launch."
+          copy="The work spans student services, AI assistants, public research sites, internal tools, subscription apps, and the unglamorous engineering that keeps them usable after launch."
         />
         <div className="mt-10 grid border md:grid-cols-4">
           {highlights.map(({ icon: Icon, title, copy }) => (
@@ -256,11 +292,34 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
 
       <section
         className="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t py-20 md:w-[calc(100%-3rem)]"
+        id="technical-work"
+      >
+        <SectionIntro
+          title="Architecture and delivery"
+          copy="I like the bit where vague goals have to become usable systems, sensible architecture, and delivery plans that a real team can survive without forming a support group."
+        />
+        <div className="mt-8 max-w-3xl border-l-3 border-accent bg-muted/45 p-5 text-sm leading-7 text-muted-foreground">
+          AWS Certified Solutions Architect - Professional gives me a structured way to reason about
+          reliability, security, cost, scalability, migration, and operational support.
+        </div>
+        <div className="mt-10 grid border md:grid-cols-4">
+          {deliveryCards.map(({ icon: Icon, title, copy }) => (
+            <article className="min-h-64 border-b p-6 md:border-r md:border-b-0" key={title}>
+              <Icon aria-hidden="true" className="text-primary" />
+              <h3 className="mt-7 text-lg font-bold leading-tight">{title}</h3>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t py-20 md:w-[calc(100%-3rem)]"
         id="products"
       >
         <SectionIntro
-          title="Products and experiments"
-          copy="Lexio is where I ship focused software: small products, AI workflows, developer tools, and prototypes that flex my developer skills and keep my brain sharp."
+          title="Builds and experiments"
+          copy="Lexio is where I ship focused software: small apps, AI workflows, developer tools, and prototypes that prove or disprove an idea in the open."
         />
         <div className="mt-10 flex flex-col">
           {products.map((product, index) => (
@@ -281,6 +340,9 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground md:text-base">
                   {product.copy}
                 </p>
+                <p className="mt-3 max-w-3xl border-l-3 border-accent pl-3 text-sm font-medium leading-6 text-foreground">
+                  {product.note}
+                </p>
               </div>
               <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
             </a>
@@ -294,10 +356,10 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
       >
         <SectionIntro
           title="University platforms and research translation"
-          copy="A lot of the interesting work happens between disciplines: careers, mobile services, sustainability, physics, public science, research visibility, and practical AI."
+          copy="A lot of the interesting work happens between disciplines: careers, mobile services, sustainability, physics, public science, research visibility, and AI that has to be useful after the demo."
         />
         <div className="mt-10 grid border md:grid-cols-3">
-          {universityWork.map(({ icon: Icon, title, type, href, copy }) => (
+          {universityWork.map(({ icon: Icon, title, type, href, copy, note }) => (
             <a
               className="group min-h-72 border-b p-6 text-foreground transition-colors hover:bg-muted/45 md:border-r"
               href={href}
@@ -312,6 +374,9 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
               </p>
               <h3 className="mt-2 text-2xl font-bold leading-tight">{title}</h3>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">{copy}</p>
+              <p className="mt-4 border-l-3 border-accent pl-3 text-sm font-medium leading-6">
+                {note}
+              </p>
             </a>
           ))}
         </div>
@@ -348,7 +413,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
       >
         <SectionIntro
           title="Notes from the workbench"
-          copy="Short-form thinking on products, engineering judgement, AI, delivery, and whatever technical decision currently deserves a raised eyebrow."
+          copy="Short-form thinking on software, engineering judgement, AI, delivery, and whatever technical decision currently deserves a raised eyebrow."
         />
         {posts.length > 0 ? (
           <div className="mt-10 grid gap-4 md:grid-cols-3">
@@ -376,7 +441,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
           More work, writing, and traces of what I&apos;m building
         </h2>
         <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">
-          This site is a working notebook for products, platforms, ideas, and the occasional
+          This site is a working notebook for software, platforms, ideas, and the occasional
           technical opinion with its sleeves rolled up.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

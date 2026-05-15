@@ -16,11 +16,11 @@ const siteUrl = 'https://anthonyhumphreys.dev';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Anthony Humphreys | Product Engineering, AI and Mobile Platforms',
+    default: 'Anthony Humphreys | AI, Mobile and Research Software',
     template: '%s | Anthony Humphreys',
   },
   description:
-    'Anthony Humphreys is a product-minded senior developer building AI systems, mobile platforms, research tools, and digital services from discovery to shipped product.',
+    'Anthony Humphreys is a senior developer building applied AI tools, mobile platforms, AWS-backed services, and research software.',
   applicationName: 'Anthony Humphreys Portfolio',
   authors: [{ name: 'Anthony Humphreys', url: siteUrl }],
   creator: 'Anthony Humphreys',
@@ -28,7 +28,11 @@ export const metadata: Metadata = {
   keywords: [
     'Anthony Humphreys',
     'senior developer',
-    'product engineering',
+    'software delivery',
+    'technical leadership',
+    'AWS Solutions Architect Professional',
+    'cloud architecture',
+    'service design',
     'AI systems',
     'mobile platforms',
     'React Native',
@@ -43,15 +47,15 @@ export const metadata: Metadata = {
     type: 'website',
     url: siteUrl,
     siteName: 'Anthony Humphreys',
-    title: 'Anthony Humphreys | Product Engineering, AI and Mobile Platforms',
+    title: 'Anthony Humphreys | AI, Mobile and Research Software',
     description:
-      'Product-minded senior developer building AI systems, mobile platforms, research tools, and digital services.',
+      'Senior developer building AI tools, mobile platforms, research software, and AWS-backed services.',
   },
   twitter: {
     card: 'summary',
-    title: 'Anthony Humphreys | Product Engineering, AI and Mobile Platforms',
+    title: 'Anthony Humphreys | AI, Mobile and Research Software',
     description:
-      'Product-minded senior developer building AI systems, mobile platforms, research tools, and digital services.',
+      'Senior developer building AI tools, mobile platforms, research software, and AWS-backed services.',
   },
   robots: {
     index: true,
@@ -72,24 +76,20 @@ export default function RootLayout({ children }: { children: any }) {
     '@type': 'Person',
     name: 'Anthony Humphreys',
     url: siteUrl,
-    jobTitle: 'Product-minded senior developer',
+    jobTitle: 'Senior developer',
     sameAs: ['https://github.com/anthonyhumphreys', 'https://twitter.com/aphumphreys'],
     knowsAbout: [
-      'Product engineering',
+      'Software delivery',
       'AI systems',
       'Mobile platforms',
       'Research software',
       'React Native',
       'Next.js',
       'Cloud delivery',
+      'AWS architecture',
+      'Technical leadership',
+      'Service design',
     ],
-    makesOffer: {
-      '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: 'Product engineering, AI systems, mobile platforms, and research tools',
-      },
-    },
   };
 
   return (
