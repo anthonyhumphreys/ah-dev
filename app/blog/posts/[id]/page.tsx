@@ -52,7 +52,7 @@ export default async function Post({ params }: Props) {
         </h1>
       </header>
       <div
-        className="mt-10 max-w-3xl text-lg leading-8 text-foreground [&_a]:font-semibold [&_a]:text-primary [&_a]:underline-offset-4 [&_a:hover]:underline [&_code]:rounded-md [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-primary [&_h1]:mt-9 [&_h1]:mb-4 [&_h1]:text-4xl [&_h1]:font-extrabold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:mt-7 [&_h3]:mb-3 [&_h3]:text-2xl [&_h3]:font-bold [&_p]:my-5 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-foreground [&_pre]:p-5 [&_pre]:text-background"
+        className="mt-10 max-w-3xl text-lg leading-8 text-foreground [&_a]:font-semibold [&_a]:text-primary [&_a]:underline-offset-4 [&_a:hover]:underline [&_code]:rounded-md [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-primary [&_h1]:mt-9 [&_h1]:mb-4 [&_h1]:text-4xl [&_h1]:font-extrabold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-3xl [&_h2]:font-bold [&_h3]:mt-7 [&_h3]:mb-3 [&_h3]:text-2xl [&_h3]:font-bold [&_li]:pl-2 [&_li]:marker:text-accent [&_li]:marker:font-bold [&_li+li]:mt-2 [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:pl-7 [&_ol_ol]:my-2 [&_ol_ul]:my-2 [&_p]:my-5 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-foreground [&_pre]:p-5 [&_pre]:text-background [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-7 [&_ul_ol]:my-2 [&_ul_ul]:my-2"
         dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
       />
     </article>

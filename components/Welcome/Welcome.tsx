@@ -21,6 +21,7 @@ import {
   UsersIcon,
 } from 'lucide-react';
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import { SocialButtons } from '../SocialButtons/SocialButtons';
 
 type PostPreview = {
@@ -111,6 +112,24 @@ const products = [
   },
 ];
 
+const openSourceWork = [
+  {
+    icon: ShieldCheckIcon,
+    title: 'Policy before package installs',
+    copy: 'A TypeScript npm registry gateway that evaluates package metadata, tarballs, provenance, low-adoption signals, lifecycle scripts, and overrides before install traffic reaches developers or CI.',
+  },
+  {
+    icon: PackageIcon,
+    title: 'Node Base safety harness',
+    copy: 'A companion Node devcontainer image for unknown repositories, with ignore-scripts safe mode, observed install mode, lifecycle reports, and explicit handling for install-time behaviour.',
+  },
+  {
+    icon: BrainIcon,
+    title: 'AI kept in its lane',
+    copy: 'Optional LLM review adds structured risk context, but deterministic policy stays the enforcement authority. Decorative security can stay outside where it belongs.',
+  },
+];
+
 const universityWork = [
   {
     icon: BrainIcon,
@@ -181,15 +200,26 @@ function SectionIntro({ title, copy }: { title: string; copy: string }) {
   );
 }
 
+function EvidenceNote({ children }: { children: ReactNode }) {
+  return (
+    <p className="mt-4 max-w-3xl rounded-lg border bg-accent/10 px-3 py-2 text-sm font-medium leading-6 text-foreground">
+      {children}
+    </p>
+  );
+}
+
 export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
   return (
     <main
       id="main-content"
-      className="overflow-x-hidden bg-[linear-gradient(180deg,color-mix(in_oklab,var(--muted),transparent_12%),transparent_34rem)]"
+      className="overflow-x-hidden bg-[radial-gradient(circle_at_12%_0,color-mix(in_oklab,var(--accent),transparent_82%),transparent_28rem),linear-gradient(180deg,color-mix(in_oklab,var(--muted),transparent_10%),transparent_38rem)]"
     >
       <section className="border-b">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-6xl gap-12 py-14 md:w-[calc(100%-3rem)] md:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] md:items-center md:py-20">
+        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-6xl gap-12 py-16 md:w-[calc(100%-3rem)] md:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] md:items-center md:py-24">
           <div className="min-w-0">
+            <Badge variant="secondary" className="mb-5">
+              Senior developer and founder
+            </Badge>
             <h1 className="max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
               Building useful software for messy real-world work
             </h1>
@@ -198,7 +228,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
               architecture, building the thing, and keeping it understandable for the team that owns
               it next.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="#products" className={buttonVariants({ size: 'lg' })}>
                 Explore the work
                 <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
@@ -212,7 +242,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
             </div>
           </div>
 
-          <Card className="-rotate-1 overflow-hidden bg-card/88 shadow-2xl shadow-foreground/10 transition-transform duration-200 hover:rotate-0 hover:-translate-y-1">
+          <Card className="-rotate-1 overflow-hidden bg-card/92 shadow-2xl shadow-foreground/10 transition-transform duration-200 hover:rotate-0 hover:-translate-y-1">
             <CardHeader className="grid grid-cols-[1fr_auto] gap-4 bg-[linear-gradient(color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px)] [background-size:1.75rem_1.75rem]">
               <CardTitle className="text-sm">Anthony Humphreys</CardTitle>
               <CardDescription className="font-semibold">Senior developer</CardDescription>
@@ -280,9 +310,17 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
           copy="The work spans student services, AI assistants, public research sites, internal tools, subscription apps, and the unglamorous engineering that keeps them usable after launch."
         />
         <div className="mt-10 grid border md:grid-cols-4">
-          {highlights.map(({ icon: Icon, title, copy }) => (
-            <article className="min-h-64 border-b p-6 md:border-r md:border-b-0" key={title}>
-              <Icon aria-hidden="true" className="text-primary" />
+          {highlights.map(({ icon: Icon, title, copy }, index) => (
+            <article
+              className="min-h-64 border-b p-6 transition-colors hover:bg-muted/45 md:border-r md:border-b-0"
+              key={title}
+            >
+              <div className="flex items-center justify-between gap-4">
+                <Icon aria-hidden="true" className="text-primary" />
+                <span className="font-mono text-xs font-black text-accent">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
               <h3 className="mt-7 text-lg font-bold leading-tight">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
             </article>
@@ -298,14 +336,22 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
           title="Architecture and delivery"
           copy="I like the bit where vague goals have to become usable systems, sensible architecture, and delivery plans that a real team can survive without forming a support group."
         />
-        <div className="mt-8 max-w-3xl border-l-3 border-accent bg-muted/45 p-5 text-sm leading-7 text-muted-foreground">
+        <div className="mt-8 max-w-3xl rounded-lg border bg-muted/45 p-5 text-sm leading-7 text-muted-foreground">
           AWS Certified Solutions Architect - Professional gives me a structured way to reason about
           reliability, security, cost, scalability, migration, and operational support.
         </div>
         <div className="mt-10 grid border md:grid-cols-4">
-          {deliveryCards.map(({ icon: Icon, title, copy }) => (
-            <article className="min-h-64 border-b p-6 md:border-r md:border-b-0" key={title}>
-              <Icon aria-hidden="true" className="text-primary" />
+          {deliveryCards.map(({ icon: Icon, title, copy }, index) => (
+            <article
+              className="min-h-64 border-b p-6 transition-colors hover:bg-muted/45 md:border-r md:border-b-0"
+              key={title}
+            >
+              <div className="flex items-center justify-between gap-4">
+                <Icon aria-hidden="true" className="text-primary" />
+                <span className="font-mono text-xs font-black text-accent">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
               <h3 className="mt-7 text-lg font-bold leading-tight">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
             </article>
@@ -340,9 +386,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground md:text-base">
                   {product.copy}
                 </p>
-                <p className="mt-3 max-w-3xl border-l-3 border-accent pl-3 text-sm font-medium leading-6 text-foreground">
-                  {product.note}
-                </p>
+                <EvidenceNote>{product.note}</EvidenceNote>
               </div>
               <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
             </a>
@@ -374,11 +418,62 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
               </p>
               <h3 className="mt-2 text-2xl font-bold leading-tight">{title}</h3>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">{copy}</p>
-              <p className="mt-4 border-l-3 border-accent pl-3 text-sm font-medium leading-6">
-                {note}
-              </p>
+              <EvidenceNote>{note}</EvidenceNote>
             </a>
           ))}
+        </div>
+      </section>
+
+      <section className="border-y bg-muted/35" id="open-source">
+        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-6xl gap-10 py-20 md:w-[calc(100%-3rem)] lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+          <div>
+            <Badge variant="secondary" className="mb-5">
+              Open source
+            </Badge>
+            <SectionIntro
+              title="Anvil Registry"
+              copy="An open-source npm registry gateway and Node devcontainer base image for safer dependency installs, built from a spec with Codex doing the long-haul implementation work."
+            />
+            <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
+              Anvil sits between package managers and upstream registries, applies deterministic
+              policy, queues analysis, and gives reviewers enough evidence to understand why a
+              dependency was allowed, blocked, quarantined, or overridden.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="https://anvil-registry.vercel.app/"
+                className={buttonVariants({ size: 'lg' })}
+              >
+                Read the docs
+                <ExternalLinkIcon data-icon="inline-end" aria-hidden="true" />
+              </a>
+              <a
+                href="https://github.com/anthonyhumphreys/anvil-registry/"
+                className={buttonVariants({ variant: 'outline', size: 'lg' })}
+              >
+                View repository
+                <ExternalLinkIcon data-icon="inline-end" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+
+          <div className="grid border bg-background md:grid-cols-3 lg:grid-cols-1">
+            {openSourceWork.map(({ icon: Icon, title, copy }, index) => (
+              <article
+                className="min-h-52 border-b p-6 transition-colors hover:bg-muted/45 md:border-r md:border-b-0 lg:border-r-0 lg:border-b"
+                key={title}
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <Icon aria-hidden="true" className="text-primary" />
+                  <span className="font-mono text-xs font-black text-accent">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="mt-6 text-lg font-bold leading-tight">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -397,9 +492,15 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
           </CardHeader>
           <CardContent>
             <ul className="flex flex-col gap-3">
-              {principles.map((item) => (
-                <li className="border-l-3 border-accent bg-muted/45 p-3 text-sm" key={item}>
-                  {item}
+              {principles.map((item, index) => (
+                <li
+                  className="grid grid-cols-[2rem_1fr] gap-3 rounded-lg border bg-muted/45 p-3 text-sm"
+                  key={item}
+                >
+                  <span className="font-mono text-xs font-black text-accent">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -419,7 +520,7 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {posts.map((post) => (
               <Link href={`/blog/posts/${post.id}`} key={post.id}>
-                <Card className="h-full transition-transform hover:-translate-y-1">
+                <Card className="h-full transition-transform hover:-translate-y-1 hover:bg-muted/35">
                   <CardHeader>
                     <CardTitle>{post.title}</CardTitle>
                     <CardDescription>{post.summary}</CardDescription>

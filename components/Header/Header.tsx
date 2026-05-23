@@ -17,6 +17,7 @@ import Link from 'next/link';
 
 const navItems = [
   { label: 'Work', href: '/#products' },
+  { label: 'Open Source', href: '/#open-source' },
   { label: 'Technical Leadership', href: '/technical-leadership' },
   { label: 'Writing', href: '/blog' },
   { label: 'About', href: '/about' },
@@ -32,7 +33,7 @@ export function HeaderWithProjectsMenu() {
       <div className="mx-auto flex h-16 w-[calc(100%-2rem)] max-w-6xl items-center justify-between gap-4 md:w-[calc(100%-3rem)]">
         <Link
           href="/"
-          className="text-sm font-extrabold tracking-tight text-foreground underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-ring"
+          className="inline-flex min-h-11 items-center text-sm font-extrabold tracking-tight text-foreground underline-offset-4 hover:underline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-ring"
         >
           Anthony Humphreys
         </Link>

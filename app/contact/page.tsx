@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { SocialButtons } from '@/components/SocialButtons/SocialButtons';
+import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { FormEvent, useState } from 'react';
 
@@ -36,7 +38,7 @@ export default function Contact() {
 
     if (Object.keys(nextErrors).length === 0) {
       toast.success('Message drafted', {
-        description: 'Email Anthony directly if this form is not wired up yet.',
+        description: 'This local form is not wired to an inbox yet. Social links are below.',
       });
     }
   };
@@ -44,77 +46,87 @@ export default function Contact() {
   return (
     <main
       id="main-content"
-      className="mx-auto min-h-[calc(100vh-4rem)] w-[calc(100%-2rem)] max-w-3xl py-14 md:w-[calc(100%-3rem)] md:py-20"
+      className="mx-auto min-h-[calc(100vh-4rem)] w-[calc(100%-2rem)] max-w-6xl py-14 md:w-[calc(100%-3rem)] md:py-20"
     >
-      <div className="text-center md:text-left">
-        <h1 className="text-balance text-5xl font-black leading-none tracking-tight md:text-7xl">
-          Get in touch
-        </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-          Useful conversations welcome: software, platforms, AI systems, research tools, and roles
-          where senior engineering judgement is the point rather than the garnish.
-        </p>
-      </div>
-
-      <form className="mt-10" onSubmit={handleSubmit}>
-        <FieldGroup>
-          <div className="grid gap-5 md:grid-cols-2">
-            <Field data-invalid={Boolean(errors.name)}>
-              <FieldLabel htmlFor="name">Name</FieldLabel>
-              <Input
-                id="name"
-                name="name"
-                autoComplete="name"
-                placeholder="Your name…"
-                aria-invalid={Boolean(errors.name)}
-              />
-              <FieldError>{errors.name}</FieldError>
-            </Field>
-
-            <Field data-invalid={Boolean(errors.email)}>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                spellCheck={false}
-                placeholder="you@example.com…"
-                aria-invalid={Boolean(errors.email)}
-              />
-              <FieldError>{errors.email}</FieldError>
-            </Field>
+      <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+        <aside className="border-b pb-8 md:border-r md:border-b-0 md:pr-10">
+          <Badge variant="secondary" className="mb-5">
+            Contact
+          </Badge>
+          <h1 className="text-balance text-5xl font-black leading-none tracking-tight md:text-7xl">
+            Get in touch
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+            Useful conversations welcome: software, platforms, AI systems, research tools, and roles
+            where senior engineering judgement is the point rather than the garnish.
+          </p>
+          <div className="mt-8">
+            <SocialButtons />
           </div>
+        </aside>
 
-          <Field data-invalid={Boolean(errors.subject)}>
-            <FieldLabel htmlFor="subject">Subject</FieldLabel>
-            <Input
-              id="subject"
-              name="subject"
-              autoComplete="off"
-              placeholder="Project, role, or idea…"
-              aria-invalid={Boolean(errors.subject)}
-            />
-            <FieldError>{errors.subject}</FieldError>
-          </Field>
+        <form className="rounded-lg border bg-card p-5 md:p-6" onSubmit={handleSubmit} noValidate>
+          <FieldGroup>
+            <div className="grid gap-5 md:grid-cols-2">
+              <Field data-invalid={Boolean(errors.name)}>
+                <FieldLabel htmlFor="name">Name</FieldLabel>
+                <Input
+                  id="name"
+                  name="name"
+                  autoComplete="name"
+                  placeholder="Your name"
+                  aria-invalid={Boolean(errors.name)}
+                />
+                <FieldError>{errors.name}</FieldError>
+              </Field>
 
-          <Field>
-            <FieldLabel htmlFor="message">Message</FieldLabel>
-            <Textarea
-              id="message"
-              name="message"
-              autoComplete="off"
-              placeholder="A little context…"
-              className="min-h-36"
-            />
-            <FieldDescription>Keep it practical. Specific context beats mystery.</FieldDescription>
-          </Field>
+              <Field data-invalid={Boolean(errors.email)}>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  spellCheck={false}
+                  placeholder="you@example.com"
+                  aria-invalid={Boolean(errors.email)}
+                />
+                <FieldError>{errors.email}</FieldError>
+              </Field>
+            </div>
 
-          <Button type="submit" size="lg" className="w-full md:w-fit">
-            Send Message
-          </Button>
-        </FieldGroup>
-      </form>
+            <Field data-invalid={Boolean(errors.subject)}>
+              <FieldLabel htmlFor="subject">Subject</FieldLabel>
+              <Input
+                id="subject"
+                name="subject"
+                autoComplete="off"
+                placeholder="Project, role, or idea"
+                aria-invalid={Boolean(errors.subject)}
+              />
+              <FieldError>{errors.subject}</FieldError>
+            </Field>
+
+            <Field>
+              <FieldLabel htmlFor="message">Message</FieldLabel>
+              <Textarea
+                id="message"
+                name="message"
+                autoComplete="off"
+                placeholder="A little context"
+                className="min-h-40"
+              />
+              <FieldDescription>
+                Keep it practical. Specific context beats mystery.
+              </FieldDescription>
+            </Field>
+
+            <Button type="submit" size="lg" className="w-full md:w-fit">
+              Draft message
+            </Button>
+          </FieldGroup>
+        </form>
+      </div>
     </main>
   );
 }

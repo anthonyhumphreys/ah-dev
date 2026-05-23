@@ -21,6 +21,7 @@ Anthony Humphreys is a senior developer building applied AI tools, mobile platfo
 - Sustainable packaging tool: web tooling for eCommerce packaging decisions across cost, compliance, and environmental impact.
 - AuroraWatch UK refresh: public science platform modernisation for aurora data and alerts.
 - Prob_AI research hub: public research site using Next.js, Mantine UI, AWS, integrations, and admin workflows.
+- Anvil Registry: open-source npm registry gateway and Node devcontainer base image for safer dependency installs, deterministic policy, package analysis, audit trails, and reviewer context.
 - Lexio, GMprentice, and JobMatch AI: small software experiments and SaaS offerings.
 
 ## Technical Leadership
@@ -35,6 +36,7 @@ Architecture interests include serverless and cloud-native systems, event-driven
 - Technical Leadership: /technical-leadership
 - Writing: /blog
 - Work: /#products
+- Open source: /#open-source
 - University platforms: /#platforms
 - About: /about
 - Contact: /contact

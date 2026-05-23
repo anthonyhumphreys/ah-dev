@@ -1,15 +1,8 @@
 import { Badge } from '@/components/ui/badge';
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
   ExternalLinkIcon,
   Gamepad2Icon,
+  PackageIcon,
   RocketIcon,
   SparklesIcon,
   WorkflowIcon,
@@ -44,6 +37,15 @@ export const projectList = [
     status: 'Live',
   },
   {
+    icon: PackageIcon,
+    title: 'Anvil Registry',
+    description:
+      'Open-source npm registry gateway and Node devcontainer base image for safer dependency installs.',
+    note: 'Built from a spec with Codex goal mode, keeping deterministic policy in charge while optional AI review adds context.',
+    href: 'https://anvil-registry.vercel.app/',
+    status: 'Open source',
+  },
+  {
     icon: WorkflowIcon,
     title: 'Spark',
     description:
@@ -60,9 +62,12 @@ export function ProjectGrid() {
       id="main-content"
       className="mx-auto min-h-[calc(100vh-4rem)] w-[calc(100%-2rem)] max-w-6xl py-14 md:w-[calc(100%-3rem)] md:py-20"
     >
-      <div className="max-w-3xl">
+      <div className="max-w-3xl border-b pb-10">
+        <Badge variant="secondary" className="mb-5">
+          Lexio and experiments
+        </Badge>
         <h1 className="text-balance text-5xl font-black leading-none tracking-tight md:text-7xl">
-          Builds And Experiments
+          Builds and experiments
         </h1>
         <p className="mt-5 text-lg leading-8 text-muted-foreground">
           Current Lexio builds and experiments: small, focused software that tests AI workflows,
@@ -70,23 +75,35 @@ export function ProjectGrid() {
         </p>
       </div>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {projectList.map(({ icon: Icon, title, description, href, status, note }) => (
-          <a href={href} key={title} className="block">
-            <Card className="h-full transition-transform hover:-translate-y-1">
-              <CardHeader>
+      <div className="mt-6 flex flex-col">
+        {projectList.map(({ icon: Icon, title, description, href, status, note }, index) => (
+          <a
+            href={href}
+            key={title}
+            className="group grid gap-5 border-b py-7 text-foreground transition-colors hover:bg-muted/35 md:grid-cols-[3rem_1fr_auto]"
+          >
+            <span className="font-mono text-sm font-black text-accent">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-3">
                 <Icon aria-hidden="true" className="text-primary" />
-                <CardAction>
-                  <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
-                </CardAction>
                 <Badge variant="secondary" className="w-fit">
                   {status}
                 </Badge>
-                <CardTitle>{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm leading-6 text-muted-foreground">{note}</CardContent>
-            </Card>
+              </div>
+              <h2 className="mt-4 text-3xl font-extrabold leading-none tracking-tight">{title}</h2>
+              <p className="mt-3 max-w-3xl text-base leading-7 text-muted-foreground">
+                {description}
+              </p>
+              <p className="mt-4 max-w-3xl rounded-lg border bg-accent/10 px-3 py-2 text-sm font-medium leading-6">
+                {note}
+              </p>
+            </div>
+            <ExternalLinkIcon
+              aria-hidden="true"
+              className="text-muted-foreground transition-transform group-hover:translate-x-1"
+            />
           </a>
         ))}
       </div>

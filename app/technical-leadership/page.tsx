@@ -109,9 +109,15 @@ export default function TechnicalLeadershipPage() {
           </p>
         </div>
         <div className="grid gap-3">
-          {problemThemes.map((theme) => (
-            <div className="border-l-3 border-accent bg-muted/45 p-4 text-sm" key={theme}>
-              {theme}
+          {problemThemes.map((theme, index) => (
+            <div
+              className="grid grid-cols-[2rem_1fr] gap-3 rounded-lg border bg-muted/45 p-4 text-sm"
+              key={theme}
+            >
+              <span className="font-mono text-xs font-black text-accent">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <span>{theme}</span>
             </div>
           ))}
         </div>

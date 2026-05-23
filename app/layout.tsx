@@ -6,6 +6,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Geist } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
+import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import './globals.css';
 
@@ -70,7 +71,7 @@ export const viewport: Viewport = {
   themeColor: '#fdfefe',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Person',

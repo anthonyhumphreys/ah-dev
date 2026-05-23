@@ -21,7 +21,7 @@ export function SocialButton({ channel }: { channel: keyof typeof SocialProvider
 
   return (
     <a
-      className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'w-full sm:w-auto')}
+      className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'w-full sm:w-auto')}
       href={SocialProviderLinks[channel]}
       target="_blank"
       rel="noopener noreferrer"

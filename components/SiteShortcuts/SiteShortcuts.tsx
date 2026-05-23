@@ -10,7 +10,14 @@ import {
   CommandShortcut,
 } from '@/components/ui/command';
 import { toast } from 'sonner';
-import { BriefcaseBusinessIcon, CloudIcon, FileTextIcon, MailIcon, RocketIcon } from 'lucide-react';
+import {
+  BriefcaseBusinessIcon,
+  CloudIcon,
+  FileTextIcon,
+  MailIcon,
+  RocketIcon,
+  ShieldCheckIcon,
+} from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -39,6 +46,12 @@ const actions = [
     description: 'See capabilities and recent work',
     href: '/#experience',
     icon: BriefcaseBusinessIcon,
+  },
+  {
+    label: 'Open Source',
+    description: 'See Anvil Registry',
+    href: '/#open-source',
+    icon: ShieldCheckIcon,
   },
   {
     label: 'Open Technical Leadership',

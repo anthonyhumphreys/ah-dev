@@ -49,12 +49,12 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
   --background: oklch(0.996 0.002 195);
   --foreground: oklch(0.19 0.026 215);
-  --card: oklch(1 0 0);
+  --card: oklch(0.992 0.004 195);
   --card-foreground: oklch(0.19 0.026 215);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.992 0.004 195);
   --popover-foreground: oklch(0.19 0.026 215);
   --primary: oklch(0.43 0.08 210);
   --primary-foreground: oklch(0.99 0.005 195);
@@ -74,14 +74,14 @@
   --chart-3: oklch(0.56 0.08 180);
   --chart-4: oklch(0.52 0.06 250);
   --chart-5: oklch(0.42 0.045 215);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.985 0.004 195);
+  --sidebar-foreground: oklch(0.19 0.026 215);
+  --sidebar-primary: oklch(0.43 0.08 210);
+  --sidebar-primary-foreground: oklch(0.99 0.005 195);
+  --sidebar-accent: oklch(0.965 0.011 210);
+  --sidebar-accent-foreground: oklch(0.22 0.032 215);
+  --sidebar-border: oklch(0.88 0.015 210);
+  --sidebar-ring: oklch(0.68 0.16 35);
 }
 
 .dark {
@@ -109,14 +109,14 @@
   --chart-3: oklch(0.65 0.08 180);
   --chart-4: oklch(0.66 0.08 250);
   --chart-5: oklch(0.86 0.02 215);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: oklch(0.18 0.024 215);
+  --sidebar-foreground: oklch(0.94 0.012 195);
+  --sidebar-primary: oklch(0.72 0.11 198);
+  --sidebar-primary-foreground: oklch(0.15 0.02 215);
+  --sidebar-accent: oklch(0.23 0.03 215);
+  --sidebar-accent-foreground: oklch(0.94 0.012 195);
+  --sidebar-border: oklch(0.3 0.032 215);
+  --sidebar-ring: oklch(0.74 0.16 38);
 }
 
 @layer base {
@@ -140,11 +140,26 @@
     -webkit-tap-highlight-color: color-mix(in oklab, var(--primary), transparent 84%);
   }
 
+  a {
+    text-underline-offset: 0.18em;
+  }
+
   ::selection {
     background: color-mix(in oklab, var(--accent), transparent 68%);
   }
 
   :target {
     scroll-margin-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
   }
 }

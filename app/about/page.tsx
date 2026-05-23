@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { CompassIcon } from 'lucide-react';
 
 const usefulWhen = [
   'The goal is real, but the path is still foggy.',
@@ -14,12 +15,25 @@ export default function About() {
       id="main-content"
       className="mx-auto min-h-[calc(100vh-4rem)] w-[calc(100%-2rem)] max-w-4xl py-14 md:w-[calc(100%-3rem)] md:py-20"
     >
-      <h1 className="text-balance text-5xl font-black leading-none tracking-tight md:text-7xl">
-        Anthony Humphreys
-      </h1>
+      <div className="border-b pb-10">
+        <Badge variant="secondary" className="mb-5">
+          About
+        </Badge>
+        <h1 className="text-balance text-5xl font-black leading-none tracking-tight md:text-7xl">
+          Anthony Humphreys
+        </h1>
+        <p className="mt-6 max-w-3xl text-xl leading-8 text-muted-foreground">
+          Senior developer at Lancaster University, founder of Lexio, and useful when the brief is
+          still carrying several disguises.
+        </p>
+      </div>
 
-      <Card className="mt-8">
-        <CardContent className="flex flex-col gap-5 text-lg leading-8 text-muted-foreground">
+      <section className="grid gap-8 border-b py-12 md:grid-cols-[0.72fr_1.28fr]">
+        <div>
+          <CompassIcon aria-hidden="true" className="text-primary" />
+          <h2 className="mt-5 text-3xl font-extrabold tracking-tight">How I fit into the work</h2>
+        </div>
+        <div className="flex flex-col gap-5 text-lg leading-8 text-muted-foreground">
           <p>
             I&apos;m a Senior Developer at Lancaster University, working within the IT Partnering
             and Innovation team. I work across student-facing platforms, applied AI, service design,
@@ -42,18 +56,23 @@ export default function About() {
             way to reason about cloud architecture in practical delivery contexts: reliability,
             security, cost, scalability, migration, observability, and operational support.
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </section>
 
-      <section className="mt-10">
+      <section className="py-12">
         <h2 className="text-3xl font-extrabold tracking-tight">Where I tend to help</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
-          {usefulWhen.map((item) => (
+          {usefulWhen.map((item, index) => (
             <Card key={item}>
               <CardHeader>
-                <Badge variant="secondary" className="w-fit">
-                  Senior judgement
-                </Badge>
+                <div className="flex items-start justify-between gap-4">
+                  <Badge variant="secondary" className="w-fit">
+                    Senior judgement
+                  </Badge>
+                  <span className="font-mono text-xs font-black text-accent">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
                 <CardTitle className="text-lg leading-tight">{item}</CardTitle>
               </CardHeader>
             </Card>
