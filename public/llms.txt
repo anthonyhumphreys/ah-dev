@@ -45,3 +45,5 @@ Architecture interests include serverless and cloud-native systems, event-driven
 
 - GitHub: https://github.com/anthonyhumphreys
 - Twitter: https://twitter.com/aphumphreys
+- Discord: https://discord.gg/PAaPFVKbaF
+- Twitch: https://www.twitch.tv/anthonyhumphreys

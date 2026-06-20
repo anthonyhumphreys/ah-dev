@@ -78,7 +78,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     name: 'Anthony Humphreys',
     url: siteUrl,
     jobTitle: 'Senior developer',
-    sameAs: ['https://github.com/anthonyhumphreys', 'https://twitter.com/aphumphreys'],
+    sameAs: [
+      'https://github.com/anthonyhumphreys',
+      'https://twitter.com/aphumphreys',
+      'https://discord.gg/PAaPFVKbaF',
+      'https://www.twitch.tv/anthonyhumphreys',
+    ],
     knowsAbout: [
       'Software delivery',
       'AI systems',
