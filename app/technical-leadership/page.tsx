@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import {
   CloudIcon,
@@ -160,9 +161,17 @@ export default function TechnicalLeadershipPage() {
             people can build, run, secure, and improve.
           </p>
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {principles.map(({ icon: Icon, title, copy }) => (
-            <Card key={title} className="h-full">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+          {principles.map(({ icon: Icon, title, copy }, index) => (
+            <Card
+              key={title}
+              className={cn(
+                'h-full',
+                index === 0 && 'md:col-span-2 lg:col-span-3',
+                index === 1 && 'lg:col-span-3',
+                index > 1 && 'lg:col-span-2'
+              )}
+            >
               <CardHeader>
                 <Icon aria-hidden="true" className="mb-1 text-primary" />
                 <CardTitle className="text-xl leading-tight">{title}</CardTitle>

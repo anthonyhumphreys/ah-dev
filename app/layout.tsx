@@ -4,13 +4,14 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Geist } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import './globals.css';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 const siteUrl = 'https://anthonyhumphreys.dev';
 
@@ -68,7 +69,10 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   minimumScale: 1,
-  themeColor: '#fdfefe',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fcfefe' },
+    { media: '(prefers-color-scheme: dark)', color: '#030d10' },
+  ],
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -99,7 +103,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <html lang="en" suppressHydrationWarning className={cn('font-sans', geist.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn('font-sans', geist.variable, geistMono.variable)}
+    >
       <head>
         <script
           type="application/ld+json"

@@ -28,6 +28,7 @@ export function SocialButton({ channel }: { channel: keyof typeof SocialProvider
     >
       <Icon data-icon="inline-start" aria-hidden="true" />
       {channel}
+      <span className="sr-only"> (opens in new tab)</span>
     </a>
   );
 }

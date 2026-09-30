@@ -7,16 +7,17 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandShortcut,
 } from '@/components/ui/command';
 import { toast } from 'sonner';
 import {
   BriefcaseBusinessIcon,
   CloudIcon,
   FileTextIcon,
+  LaptopIcon,
   MailIcon,
   RocketIcon,
   ShieldCheckIcon,
+  type LucideIcon,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -34,42 +35,61 @@ const konamiKeys = [
   'a',
 ];
 
-const actions = [
+type Action = {
+  label: string;
+  description: string;
+  href: string;
+  icon: LucideIcon;
+  keywords?: string[];
+};
+
+const actions: Action[] = [
   {
-    label: 'Explore Builds',
+    label: 'Explore builds',
     description: 'Jump to builds and experiments',
     href: '/#products',
     icon: RocketIcon,
+    keywords: ['AI', 'projects', 'work'],
   },
   {
-    label: 'Review Experience',
+    label: 'See experience',
     description: 'See capabilities and recent work',
     href: '/#experience',
     icon: BriefcaseBusinessIcon,
   },
   {
-    label: 'Open Source',
-    description: 'See Anvil Registry',
+    label: 'Open source: Anvil Registry',
+    description: 'See open-source work',
     href: '/#open-source',
     icon: ShieldCheckIcon,
   },
   {
-    label: 'Open Technical Leadership',
+    label: 'Technical leadership',
     description: 'Read architecture and delivery principles',
     href: '/technical-leadership',
     icon: CloudIcon,
+    keywords: ['architecture', 'AWS', 'cloud'],
   },
   {
-    label: 'Open Writing',
+    label: 'Writing',
     description: 'Read notes and markdown posts',
     href: '/blog',
     icon: FileTextIcon,
+    keywords: ['blog', 'posts'],
   },
   {
-    label: 'Start A Conversation',
+    label: 'Uses',
+    description: 'See the hardware and software behind the work',
+    href: '/about/uses',
+    icon: LaptopIcon,
+    keywords: ['hardware', 'software', 'setup'],
+  },
+  {
+    label: 'Contact',
     description: 'Go to contact options',
     href: '/contact',
     icon: MailIcon,
+    keywords: ['socials', 'GitHub', 'Discord'],
   },
 ];
 
@@ -107,9 +127,16 @@ export function SiteShortcuts() {
       sequenceRef.current = [...sequenceRef.current, key].slice(-konamiKeys.length);
 
       if (sequenceRef.current.join('|') === konamiKeys.join('|')) {
-        toast.success('Senior mode unlocked', {
-          description: 'Useful thing remains real.',
-        });
+        sequenceRef.current = [];
+        const showing = document.documentElement.classList.toggle('show-working');
+
+        if (showing) {
+          toast.success('Showing the working.', {
+            description: 'Every box, outlined. Enter the code again to tidy up.',
+          });
+        } else {
+          toast.success('Working tidied away.');
+        }
       }
     };
 
@@ -127,12 +154,13 @@ export function SiteShortcuts() {
     <CommandDialog open={open} onOpenChange={setOpen} description="Search portfolio actions">
       <CommandInput placeholder="Search actions…" aria-label="Search portfolio actions" />
       <CommandList>
-        <CommandEmpty>No matching action. Very rude of entropy.</CommandEmpty>
+        <CommandEmpty>No match. Try ‘writing’, ‘AI’ or ‘contact’.</CommandEmpty>
         <CommandGroup heading="Portfolio">
-          {commandItems.map(({ label, description, href, icon: Icon }) => (
+          {commandItems.map(({ label, description, href, icon: Icon, keywords }) => (
             <CommandItem
               key={href}
               value={`${label} ${description}`}
+              keywords={keywords}
               onSelect={() => runAction(href)}
             >
               <Icon aria-hidden="true" />
@@ -140,7 +168,6 @@ export function SiteShortcuts() {
                 <span>{label}</span>
                 <span className="text-xs text-muted-foreground">{description}</span>
               </span>
-              <CommandShortcut>Go</CommandShortcut>
             </CommandItem>
           ))}
         </CommandGroup>

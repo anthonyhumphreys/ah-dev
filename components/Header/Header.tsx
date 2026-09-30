@@ -14,6 +14,7 @@ import {
 import { cn } from '@/lib/utils';
 import { CommandIcon, MenuIcon } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { label: 'Work', href: '/#products' },
@@ -24,7 +25,15 @@ const navItems = [
   { label: 'Contact', href: '/contact' },
 ];
 
+function isActive(pathname: string, href: string) {
+  if (href.includes('#')) {
+    return false;
+  }
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function HeaderWithProjectsMenu() {
+  const pathname = usePathname() ?? '/';
   const openCommandPalette = () =>
     window.dispatchEvent(new Event('portfolio:open-command-palette'));
 
@@ -39,18 +48,25 @@ export function HeaderWithProjectsMenu() {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
-          {navItems.map((item) => (
-            <Link
-              href={item.href}
-              className={cn(
-                buttonVariants({ variant: 'ghost', size: 'sm' }),
-                'text-muted-foreground hover:text-foreground'
-              )}
-              key={item.label}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            const active = isActive(pathname, item.href);
+
+            return (
+              <Link
+                href={item.href}
+                aria-current={active ? 'page' : undefined}
+                className={cn(
+                  buttonVariants({ variant: 'ghost', size: 'sm' }),
+                  'text-muted-foreground hover:text-foreground',
+                  active &&
+                    'text-foreground underline decoration-primary decoration-2 underline-offset-8'
+                )}
+                key={item.label}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -78,26 +94,34 @@ export function HeaderWithProjectsMenu() {
                 <SheetDescription>Move around Anthony Humphreys&apos; portfolio.</SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col gap-2 px-4" aria-label="Mobile navigation">
-                {navItems.map((item) => (
-                  <SheetClose key={item.label} render={<Link href={item.href} />}>
-                    <span
-                      className={cn(
-                        buttonVariants({ variant: 'ghost', size: 'lg' }),
-                        'w-full justify-start'
-                      )}
+                {navItems.map((item) => {
+                  const active = isActive(pathname, item.href);
+
+                  return (
+                    <SheetClose
+                      key={item.label}
+                      render={<Link href={item.href} aria-current={active ? 'page' : undefined} />}
                     >
-                      {item.label}
-                    </span>
-                  </SheetClose>
-                ))}
+                      <span
+                        className={cn(
+                          buttonVariants({ variant: 'ghost', size: 'lg' }),
+                          'w-full justify-start',
+                          active &&
+                            'bg-muted text-foreground underline decoration-primary decoration-2 underline-offset-8'
+                        )}
+                      >
+                        {item.label}
+                      </span>
+                    </SheetClose>
+                  );
+                })}
                 <Button
                   type="button"
                   variant="outline"
-                  className="justify-between"
+                  className="justify-start"
                   onClick={openCommandPalette}
                 >
-                  Command Palette
-                  <kbd className="text-xs text-muted-foreground">⌘ K</kbd>
+                  Search the site
                 </Button>
               </nav>
             </SheetContent>

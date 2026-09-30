@@ -30,29 +30,49 @@ describe('SiteShortcuts', () => {
     fireEvent.change(screen.getByLabelText('Search portfolio actions'), {
       target: { value: 'writing' },
     });
-    fireEvent.click(screen.getByText('Open Writing'));
+    fireEvent.click(screen.getByText('Writing'));
 
     expect(push).toHaveBeenCalledWith('/blog');
   });
 
-  it('shows the Konami unlock message', () => {
+  it('toggles the show-the-working overlay with the Konami code', () => {
     render(<SiteShortcuts />);
 
-    [
-      'ArrowUp',
-      'ArrowUp',
-      'ArrowDown',
-      'ArrowDown',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowLeft',
-      'ArrowRight',
-      'b',
-      'a',
-    ].forEach((key) => fireEvent.keyDown(window, { key }));
+    const enterCode = () =>
+      [
+        'ArrowUp',
+        'ArrowUp',
+        'ArrowDown',
+        'ArrowDown',
+        'ArrowLeft',
+        'ArrowRight',
+        'ArrowLeft',
+        'ArrowRight',
+        'b',
+        'a',
+      ].forEach((key) => fireEvent.keyDown(window, { key }));
 
-    expect(mockToastSuccess).toHaveBeenCalledWith('Senior mode unlocked', {
-      description: 'Useful thing remains real.',
+    enterCode();
+
+    expect(document.documentElement).toHaveClass('show-working');
+    expect(mockToastSuccess).toHaveBeenCalledWith('Showing the working.', {
+      description: 'Every box, outlined. Enter the code again to tidy up.',
     });
+
+    enterCode();
+
+    expect(document.documentElement).not.toHaveClass('show-working');
+    expect(mockToastSuccess).toHaveBeenLastCalledWith('Working tidied away.');
+  });
+
+  it('shows a useful empty state', () => {
+    render(<SiteShortcuts />);
+
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
+    fireEvent.change(screen.getByLabelText('Search portfolio actions'), {
+      target: { value: 'zzzz-nothing' },
+    });
+
+    expect(screen.getByText('No match. Try ‘writing’, ‘AI’ or ‘contact’.')).toBeInTheDocument();
   });
 });

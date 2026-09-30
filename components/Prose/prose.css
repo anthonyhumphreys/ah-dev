@@ -1,0 +1,239 @@
+.prose {
+  --prose-code-surface: oklch(0.2 0.026 215);
+  --prose-code-text: oklch(0.93 0.012 195);
+
+  max-width: 68ch;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--foreground);
+  overflow-wrap: break-word;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose table,
+.prose figure,
+.prose img {
+  margin-block: 1.25em;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-wrap: balance;
+  scroll-margin-top: 6rem;
+}
+
+.prose h1 {
+  margin: 2em 0 0.6em;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.prose h2 {
+  margin: 2.2em 0 0.55em;
+  font-size: 1.625rem;
+}
+
+.prose h3 {
+  margin: 1.9em 0 0.5em;
+  font-size: 1.3rem;
+}
+
+.prose h4 {
+  margin: 1.6em 0 0.4em;
+  font-size: 1.075rem;
+}
+
+.prose :is(h1, h2, h3, h4) + :is(h2, h3, h4) {
+  margin-top: 0.8em;
+}
+
+.prose :is(h1, h2, h3, h4) + * {
+  margin-top: 0;
+}
+
+.prose strong {
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.prose a {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in oklab, var(--primary), transparent 60%);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 150ms ease;
+}
+
+.prose a:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+.prose a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+  text-decoration-color: currentColor;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.6em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li {
+  padding-left: 0.35em;
+}
+
+.prose li + li {
+  margin-top: 0.5em;
+}
+
+.prose li::marker {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.prose li > :is(ul, ol) {
+  margin-block: 0.5em;
+}
+
+.prose li > p {
+  margin-block: 0.5em;
+}
+
+.prose blockquote {
+  border-left: 2px solid color-mix(in oklab, var(--accent), transparent 45%);
+  padding-left: 1.1em;
+  color: var(--muted-foreground);
+}
+
+.prose blockquote > * {
+  margin-block: 0.6em;
+}
+
+.prose hr {
+  margin-block: 2.5em;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.prose code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.875em;
+  padding: 0.12em 0.35em;
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--muted);
+  color: var(--foreground);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1.1em 1.25em;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--prose-code-surface);
+  color: var(--prose-code-text);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose pre code {
+  padding: 0;
+  font-size: inherit;
+  background: none;
+  box-shadow: none;
+  color: inherit;
+  border-radius: 0;
+}
+
+.prose pre:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+.prose th,
+.prose td {
+  padding: 0.5em 0.9em;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: 700;
+  border-bottom-width: 2px;
+}
+
+.reading-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reading-progress {
+      display: block;
+      position: fixed;
+      inset: 4rem 0 auto;
+      z-index: 30;
+      height: 2px;
+      background: var(--accent);
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      pointer-events: none;
+      animation: reading-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes reading-progress {
+  to {
+    transform: scaleX(1);
+  }
+}

@@ -1,10 +1,10 @@
 import CardGradient from '@/components/BlogCard/CardGradient';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { getSortedPostsData, type PostMeta } from '@/utils/posts';
+import Link from 'next/link';
 
 export const metadata = {
-  title: 'Writing | Anthony Humphreys',
+  title: 'Writing',
   description:
     'Notes from Anthony Humphreys on software delivery, AI systems, mobile platforms, and research tools.',
 };
@@ -25,22 +25,36 @@ export default function Home() {
           Notes on software delivery, AI, mobile platforms, research tools, and the occasional
           decision that looked better in the meeting than in the codebase.
         </p>
-        <div className="mt-6 flex flex-wrap gap-2">
-          <Badge variant="outline">Decision notes</Badge>
-          <Badge variant="outline">Architecture notes</Badge>
-          <Badge variant="outline">Applied AI</Badge>
-          <Badge variant="outline">Delivery notes</Badge>
-        </div>
+        <p className="mt-6 max-w-2xl text-sm text-muted-foreground">
+          Mostly decision notes, architecture, applied AI, and delivery.
+        </p>
       </div>
       {allPostsData.length > 0 ? (
-        <div className="mt-6 flex flex-col gap-3">
-          {allPostsData.map(({ id, title, summary }) => (
-            <CardGradient key={id} id={id} title={title} summary={summary} />
+        <ol className="mt-6 flex flex-col gap-3">
+          {allPostsData.map(({ id, title, summary, readingTimeMinutes }, index) => (
+            <li key={id}>
+              <CardGradient
+                id={id}
+                title={title}
+                summary={summary}
+                readingTimeMinutes={readingTimeMinutes}
+                ordinal={allPostsData.length - index}
+              />
+            </li>
           ))}
-        </div>
+        </ol>
       ) : (
         <Card className="mt-8">
-          <CardContent>No posts yet. The markdown trapdoor is ready.</CardContent>
+          <CardContent className="text-base leading-7">
+            No notes published yet. The markdown is ready; the words are not.{' '}
+            <Link
+              href="/"
+              className="rounded-sm font-semibold text-primary underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              Head back to the homepage
+            </Link>{' '}
+            for the work itself.
+          </CardContent>
         </Card>
       )}
     </main>

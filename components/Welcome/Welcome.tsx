@@ -3,25 +3,25 @@ import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import {
+  anvilFeatures,
+  anvilRegistry,
+  builds,
+  isExternal,
+  universityWork,
+  type PortfolioItem,
+} from '@/lib/portfolio';
+import { cn } from '@/lib/utils';
+import {
   ArrowRightIcon,
   BrainIcon,
-  BriefcaseBusinessIcon,
-  CloudIcon,
   CompassIcon,
   ExternalLinkIcon,
-  Gamepad2Icon,
   GaugeIcon,
-  MapIcon,
-  PackageIcon,
-  RocketIcon,
-  SatelliteIcon,
   ShieldCheckIcon,
-  SmartphoneIcon,
-  SparklesIcon,
-  UsersIcon,
 } from 'lucide-react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { RangeMap } from '../RangeMap/RangeMap';
 import { SocialButtons } from '../SocialButtons/SocialButtons';
 
 type PostPreview = {
@@ -30,39 +30,7 @@ type PostPreview = {
   summary: string;
 };
 
-const strengths = [
-  'Useful software',
-  'AI systems',
-  'Mobile platforms',
-  'Research tools',
-  'Service design',
-  'AWS delivery',
-];
-
-const highlights = [
-  {
-    icon: SmartphoneIcon,
-    title: 'Student-facing mobile platforms',
-    copy: 'Modernising iLancaster with React Native, Expo, faster check-in flows, safety features, digital passes, and data-informed iteration.',
-  },
-  {
-    icon: BrainIcon,
-    title: 'Applied AI that has to behave',
-    copy: 'Building tools like LUCA that support real student workflows: CV review, interview practice, job description analysis, and progress tracking.',
-  },
-  {
-    icon: BriefcaseBusinessIcon,
-    title: 'Research and innovation delivery',
-    copy: 'Turning academic and partner ideas into usable software: maps, public platforms, data tools, admin systems, and prototypes.',
-  },
-  {
-    icon: CloudIcon,
-    title: 'Architecture that can be owned',
-    copy: 'Taking ideas from discovery and workshops through implementation, deployment, feedback, and maintenance without losing the people who run it.',
-  },
-];
-
-const deliveryCards = [
+const practices = [
   {
     icon: CompassIcon,
     title: 'Problem framing',
@@ -76,108 +44,12 @@ const deliveryCards = [
   {
     icon: GaugeIcon,
     title: 'Delivery judgement',
-    copy: 'Keeping implementation, observability, release confidence, handover, and day-two ownership connected from the start.',
+    copy: 'Keeping implementation, observability, release confidence, handover, and day-two ownership connected from the start, without losing the people who run it.',
   },
   {
     icon: BrainIcon,
     title: 'Applied AI systems',
     copy: 'Building AI features around usefulness, trust, evaluation, privacy, and cost instead of letting the demo write cheques the service cannot cash.',
-  },
-];
-
-const products = [
-  {
-    icon: RocketIcon,
-    title: 'Lexio',
-    type: 'Software studio',
-    href: 'https://www.lexio.app/',
-    copy: 'A home for subscription apps and bespoke builds for developers, creators, internal tools, prototypes, and integrations.',
-    note: 'Keeping small builds tied to a real user job, a testable assumption, and enough restraint that the experiment can actually ship.',
-  },
-  {
-    icon: Gamepad2Icon,
-    title: 'GMprentice',
-    type: 'AI tool',
-    href: 'https://www.gmprentice.app/',
-    copy: 'A sandbox for tabletop GMs to practise with AI adventurers: party generation, character voice, dice, initiative, secrets, and session flow.',
-    note: 'Focused on rehearsal and feedback for live facilitation, not another content generator wearing a wizard hat.',
-  },
-  {
-    icon: SparklesIcon,
-    title: 'JobMatch AI',
-    type: 'Personal workflow tool',
-    href: 'https://personal-job-board-ivory.vercel.app/',
-    copy: 'An AI-powered job board that parses a CV, learns preferences, searches for relevant roles, and improves from user feedback.',
-    note: 'Testing whether matching, explanations, and feedback loops can make job search less like feeding a CV into a paper shredder.',
-  },
-];
-
-const openSourceWork = [
-  {
-    icon: ShieldCheckIcon,
-    title: 'Policy before package installs',
-    copy: 'A TypeScript npm registry gateway that evaluates package metadata, tarballs, provenance, low-adoption signals, lifecycle scripts, and overrides before install traffic reaches developers or CI.',
-  },
-  {
-    icon: PackageIcon,
-    title: 'Node Base safety harness',
-    copy: 'A companion Node devcontainer image for unknown repositories, with ignore-scripts safe mode, observed install mode, lifecycle reports, and explicit handling for install-time behaviour.',
-  },
-  {
-    icon: BrainIcon,
-    title: 'AI kept in its lane',
-    copy: 'Optional LLM review adds structured risk context, but deterministic policy stays the enforcement authority. Decorative security can stay outside where it belongs.',
-  },
-];
-
-const universityWork = [
-  {
-    icon: BrainIcon,
-    title: 'LUCA',
-    type: 'Careers AI assistant',
-    href: 'https://www.linkedin.com/posts/innovation-hub-lancs_innovationhub-lancasteruniversity-stemeducation-activity-7439319152944676864-chvI',
-    copy: 'A Lancaster University careers pilot for independent employability practice: CV and cover letter review, interview modes, feedback reports, and LinkedIn recommendations.',
-    note: 'Applying AI in a university service context, balancing usefulness, trust, safety, evaluation, privacy, and operational cost.',
-  },
-  {
-    icon: SmartphoneIcon,
-    title: 'iLancaster',
-    type: 'Mobile platform',
-    href: 'https://www.linkedin.com/pulse/ilancaster-evolving-together-through-co-production-zzsle',
-    copy: 'A daily companion for campus life, evolved through co-production and data: Expo migration, performance work, check-in improvements, digital passes, safety tooling, and support visibility.',
-    note: 'Maintaining and evolving a high-visibility student platform where reliability, accessibility, release confidence, and institutional service ownership matter as much as feature delivery.',
-  },
-  {
-    icon: MapIcon,
-    title: 'IceHunter front-end',
-    type: 'Research interface',
-    href: 'https://www.linkedin.com/posts/innovation-hub-lancs_lancasteruniversity-innovation-icehunter-activity-7452265127137107968-YQ5Q',
-    copy: 'A map interface for iceberg detection research, turning satellite radar and AI outputs into accessible location data for potential maritime use.',
-    note: 'Translating specialist research outputs into a usable interface where uncertainty, map interaction, and public-facing interpretation need careful handling.',
-  },
-  {
-    icon: PackageIcon,
-    title: 'Sustainable packaging tool',
-    type: 'Research tool',
-    href: 'https://www.linkedin.com/posts/innovation-hub-lancs_lancaster-team-developing-programme-to-help-activity-7396521023522852864-hgzr',
-    copy: 'A web tool helping eCommerce businesses make data-driven packaging decisions that balance cost, compliance, and environmental impact.',
-    note: 'Turning research and compliance complexity into decision support that helps businesses compare trade-offs instead of drowning in inputs.',
-  },
-  {
-    icon: SatelliteIcon,
-    title: 'AuroraWatch UK refresh',
-    type: 'Public science platform',
-    href: 'https://www.linkedin.com/posts/innovation-hub-lancs_aurorawatchuk-aurora-scienceforeveryone-activity-7426595855639482368-S0qd',
-    copy: 'A modernisation project for a public-facing aurora platform built around real-time and historical data, alerts, and wider access to science.',
-    note: 'Modernising a public science service around access, data clarity, reliability, and a wider audience than the people already fluent in the domain.',
-  },
-  {
-    icon: UsersIcon,
-    title: 'Prob_AI research hub',
-    type: 'Research web platform',
-    href: 'https://www.linkedin.com/posts/innovation-hub-lancs_innovationhub-probai-partnerships-activity-7332661773864488964-16S8',
-    copy: 'A public site for an EPSRC-funded AI research hub, built with Next.js, Mantine UI, AWS, university content integrations, and a lightweight admin workflow.',
-    note: 'Making collaboration, content ownership, AWS hosting, and long-term maintenance practical for a distributed programme.',
   },
 ];
 
@@ -189,10 +61,27 @@ const principles = [
   'Prefer evidence from users, data, and delivery over theatre. Theatre has excellent lighting and terrible uptime.',
 ];
 
-function SectionIntro({ title, copy }: { title: string; copy: string }) {
+const container = 'mx-auto w-[calc(100%-2rem)] max-w-6xl md:w-[calc(100%-3rem)]';
+
+function SectionIntro({
+  title,
+  copy,
+  size = 'md',
+}: {
+  title: string;
+  copy: string;
+  size?: 'lg' | 'md' | 'sm';
+}) {
   return (
     <div className="max-w-3xl">
-      <h2 className="text-balance text-4xl font-extrabold tracking-tight text-foreground md:text-6xl">
+      <h2
+        className={cn(
+          'text-balance font-extrabold tracking-tight text-foreground',
+          size === 'lg' && 'text-4xl md:text-6xl',
+          size === 'md' && 'text-3xl md:text-5xl',
+          size === 'sm' && 'text-3xl md:text-4xl'
+        )}
+      >
         {title}
       </h2>
       <p className="mt-4 text-lg leading-8 text-muted-foreground">{copy}</p>
@@ -208,6 +97,40 @@ function EvidenceNote({ children }: { children: ReactNode }) {
   );
 }
 
+function DomainTags({ item }: { item: PortfolioItem }) {
+  return (
+    <p className="font-mono text-[0.7rem] font-semibold uppercase tracking-wide text-muted-foreground">
+      <span className="sr-only">Domains: </span>
+      {item.domains.join(' · ')}
+    </p>
+  );
+}
+
+function EvidenceLink({ item, className }: { item: PortfolioItem; className?: string }) {
+  if (!item.href) {
+    return (
+      <span className={cn('text-sm font-bold text-muted-foreground', className)}>
+        {item.linkLabel}
+      </span>
+    );
+  }
+  const external = isExternal(item.href);
+  return (
+    <a
+      href={item.href}
+      rel={external ? 'noopener noreferrer' : undefined}
+      className={cn(
+        'inline-flex w-fit items-center gap-1.5 rounded-sm text-sm font-bold text-primary underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/60',
+        className
+      )}
+    >
+      <span className="sr-only">{item.title}: </span>
+      {item.linkLabel}
+      {external ? <ExternalLinkIcon aria-hidden="true" className="size-3.5" /> : null}
+    </a>
+  );
+}
+
 export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
   return (
     <main
@@ -215,225 +138,125 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
       className="overflow-x-hidden bg-[radial-gradient(circle_at_12%_0,color-mix(in_oklab,var(--accent),transparent_82%),transparent_28rem),linear-gradient(180deg,color-mix(in_oklab,var(--muted),transparent_10%),transparent_38rem)]"
     >
       <section className="border-b">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-6xl gap-12 py-16 md:w-[calc(100%-3rem)] md:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] md:items-center md:py-24">
+        <div
+          className={cn(
+            container,
+            'grid gap-12 py-16 md:py-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center'
+          )}
+        >
           <div className="min-w-0">
             <Badge variant="secondary" className="mb-5">
               Senior developer and founder
             </Badge>
-            <h1 className="max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-tight text-foreground sm:text-5xl md:text-6xl">
               Building useful software for messy real-world work
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground md:text-2xl">
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
               I work from unclear goal to running service: framing the problem, choosing the
               architecture, building the thing, and keeping it understandable for the team that owns
               it next.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="#products" className={buttonVariants({ size: 'lg' })}>
-                Explore the work
+              <Link href="#platforms" className={buttonVariants({ size: 'lg' })}>
+                See the university platforms
                 <ArrowRightIcon data-icon="inline-end" aria-hidden="true" />
               </Link>
-              <Link
-                href="#platforms"
-                className={buttonVariants({ variant: 'outline', size: 'lg' })}
-              >
-                See university platforms
+              <Link href="#products" className={buttonVariants({ variant: 'outline', size: 'lg' })}>
+                Browse builds and experiments
               </Link>
             </div>
           </div>
 
-          <Card className="-rotate-1 overflow-hidden bg-card/92 shadow-2xl shadow-foreground/10 transition-transform duration-200 hover:rotate-0 hover:-translate-y-1">
-            <CardHeader className="grid grid-cols-[1fr_auto] gap-4 bg-[linear-gradient(color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px)] [background-size:1.75rem_1.75rem]">
-              <CardTitle className="text-sm">Anthony Humphreys</CardTitle>
-              <CardDescription className="font-semibold">Senior developer</CardDescription>
-            </CardHeader>
-            <CardContent className="bg-[linear-gradient(color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_oklab,var(--primary),transparent_92%)_1px,transparent_1px)] [background-size:1.75rem_1.75rem]">
-              <pre className="overflow-x-auto rounded-lg bg-[#071416] p-5 text-[0.72rem] leading-6 text-[#dceceb] shadow-xl md:text-sm">
-                <code>
-                  <span className="text-accent">interface</span>{' '}
-                  <span className="text-primary">Founder</span>{' '}
-                  <span className="text-accent">extends</span>{' '}
-                  <span className="text-primary">SeniorDev</span> {'{'}
-                  {'\n'}
-                  {'  '}range:{' '}
-                  <span className="text-accent">&apos;idea to shipped system&apos;</span>;{'\n'}
-                  {'  '}edge: <span className="text-accent">&apos;judgement + delivery&apos;</span>;
-                  {'\n'}
-                  {'}'}
-                  {'\n\n'}
-                  <span className="text-accent">const</span> anthony:{' '}
-                  <span className="text-primary">Founder</span> = {'{'}
-                  {'\n'}
-                  {'  '}builds: [&apos;AI&apos;, &apos;mobile&apos;, &apos;cloud&apos;],
-                  {'\n'}
-                  {'  '}leads: &apos;discovery to delivery&apos;,
-                  {'\n'}
-                  {'  '}brings: &apos;clarity to vague work&apos;,
-                  {'\n'}
-                  {'  '}bias: &apos;make the useful thing real&apos;
-                  {'\n'}
-                  {'};'}
-                </code>
-              </pre>
-              <div className="mt-6 grid grid-cols-2 gap-6 text-sm">
-                <div>
-                  <strong>Range</strong>
-                  <p className="mt-1 font-semibold text-muted-foreground">AI, mobile, web, cloud</p>
-                </div>
-                <div>
-                  <strong>Mode</strong>
-                  <p className="mt-1 font-semibold text-muted-foreground">
-                    Unclear brief to running service
-                  </p>
-                </div>
-              </div>
-              <div className="mt-6 ml-auto h-1.5 w-24 bg-accent" aria-hidden="true" />
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="mx-auto flex w-[calc(100%-2rem)] max-w-6xl flex-wrap gap-2 pb-8 md:w-[calc(100%-3rem)]">
-          {strengths.map((item) => (
-            <Badge variant="outline" key={item}>
-              {item}
-            </Badge>
-          ))}
+          <div className="min-w-0 rounded-xl border bg-card/80 p-4 shadow-xl shadow-foreground/5 sm:p-5">
+            <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h2 className="font-mono text-xs font-black uppercase tracking-widest text-accent">
+                Range map
+              </h2>
+              <p className="text-xs text-muted-foreground">Pick a domain, or jump to the work</p>
+            </div>
+            <RangeMap />
+          </div>
         </div>
       </section>
 
-      <section
-        className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-20 md:w-[calc(100%-3rem)]"
-        id="experience"
-      >
+      <section className={cn(container, 'scroll-mt-16 py-20')} id="platforms">
         <SectionIntro
-          title="Capabilities with receipts"
-          copy="The work spans student services, AI assistants, public research sites, internal tools, subscription apps, and the unglamorous engineering that keeps them usable after launch."
+          size="lg"
+          title="University platforms and research translation"
+          copy="A lot of the interesting work happens between disciplines: careers, mobile services, sustainability, physics, public science, research visibility, and AI that has to be useful after the demo."
         />
-        <div className="mt-10 grid border md:grid-cols-4">
-          {highlights.map(({ icon: Icon, title, copy }, index) => (
+        <div className="mt-10 grid border-t border-l md:grid-cols-2 lg:grid-cols-3">
+          {universityWork.map((item) => (
             <article
-              className="min-h-64 border-b p-6 transition-colors hover:bg-muted/45 md:border-r md:border-b-0"
-              key={title}
+              className="flex scroll-mt-20 flex-col border-r border-b p-6 transition-colors target:bg-primary/8"
+              id={`work-${item.slug}`}
+              key={item.slug}
             >
               <div className="flex items-center justify-between gap-4">
-                <Icon aria-hidden="true" className="text-primary" />
-                <span className="font-mono text-xs font-black text-accent">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
+                <item.icon aria-hidden="true" className="text-primary" />
+                <DomainTags item={item} />
               </div>
-              <h3 className="mt-7 text-lg font-bold leading-tight">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
+              <p className="mt-7 text-xs font-extrabold uppercase tracking-wide text-primary">
+                {item.type}
+              </p>
+              <h3 className="mt-2 text-2xl font-bold leading-tight">{item.title}</h3>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">{item.copy}</p>
+              <EvidenceNote>{item.note}</EvidenceNote>
+              <EvidenceLink item={item} className="mt-auto pt-5" />
             </article>
           ))}
         </div>
       </section>
 
-      <section
-        className="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t py-20 md:w-[calc(100%-3rem)]"
-        id="technical-work"
-      >
-        <SectionIntro
-          title="Architecture and delivery"
-          copy="I like the bit where vague goals have to become usable systems, sensible architecture, and delivery plans that a real team can survive without forming a support group."
-        />
-        <div className="mt-8 max-w-3xl rounded-lg border bg-muted/45 p-5 text-sm leading-7 text-muted-foreground">
-          AWS Certified Solutions Architect - Professional gives me a structured way to reason about
-          reliability, security, cost, scalability, migration, and operational support.
-        </div>
-        <div className="mt-10 grid border md:grid-cols-4">
-          {deliveryCards.map(({ icon: Icon, title, copy }, index) => (
-            <article
-              className="min-h-64 border-b p-6 transition-colors hover:bg-muted/45 md:border-r md:border-b-0"
-              key={title}
-            >
-              <div className="flex items-center justify-between gap-4">
-                <Icon aria-hidden="true" className="text-primary" />
-                <span className="font-mono text-xs font-black text-accent">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </div>
-              <h3 className="mt-7 text-lg font-bold leading-tight">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section
-        className="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t py-20 md:w-[calc(100%-3rem)]"
-        id="products"
-      >
+      <section className={cn(container, 'scroll-mt-16 border-t py-20')} id="products">
         <SectionIntro
           title="Builds and experiments"
           copy="Lexio is where I ship focused software: small apps, AI workflows, developer tools, and prototypes that prove or disprove an idea in the open."
         />
-        <div className="mt-10 flex flex-col">
-          {products.map((product, index) => (
-            <a
-              className="group grid grid-cols-[2rem_1fr_1.5rem] gap-4 border-b py-6 text-foreground transition-transform hover:translate-x-1 md:grid-cols-[3.5rem_2.5rem_1fr_2rem] md:gap-6"
-              href={product.href}
-              key={product.title}
+        <div className="mt-10 flex flex-col border-t">
+          {builds.map((item) => (
+            <article
+              className="grid scroll-mt-20 gap-4 border-b py-8 transition-colors target:bg-primary/8 md:grid-cols-[14rem_1fr] md:gap-10"
+              id={`work-${item.slug}`}
+              key={item.slug}
             >
-              <span className="text-sm font-black text-accent">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <product.icon aria-hidden="true" className="hidden text-primary md:block" />
-              <div className="min-w-0">
+              <div className="flex flex-col gap-2">
                 <p className="text-xs font-extrabold uppercase tracking-wide text-primary">
-                  {product.type}
+                  {item.type}
                 </p>
-                <h3 className="mt-1 text-3xl font-extrabold leading-none">{product.title}</h3>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground md:text-base">
-                  {product.copy}
-                </p>
-                <EvidenceNote>{product.note}</EvidenceNote>
+                <h3 className="text-3xl font-extrabold leading-none">{item.title}</h3>
+                <DomainTags item={item} />
+                <EvidenceLink item={item} className="mt-2" />
               </div>
-              <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
-            </a>
+              <div className="min-w-0">
+                <p className="max-w-3xl text-base leading-7 text-muted-foreground">{item.copy}</p>
+                <EvidenceNote>{item.note}</EvidenceNote>
+              </div>
+            </article>
           ))}
         </div>
+        <Link
+          href="/projects"
+          className="mt-6 inline-flex items-center gap-1.5 rounded-sm text-sm font-bold text-primary underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/60"
+        >
+          All builds, including what&apos;s next
+          <ArrowRightIcon aria-hidden="true" className="size-3.5" />
+        </Link>
       </section>
 
-      <section
-        className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-20 md:w-[calc(100%-3rem)]"
-        id="platforms"
-      >
-        <SectionIntro
-          title="University platforms and research translation"
-          copy="A lot of the interesting work happens between disciplines: careers, mobile services, sustainability, physics, public science, research visibility, and AI that has to be useful after the demo."
-        />
-        <div className="mt-10 grid border md:grid-cols-3">
-          {universityWork.map(({ icon: Icon, title, type, href, copy, note }) => (
-            <a
-              className="group min-h-72 border-b p-6 text-foreground transition-colors hover:bg-muted/45 md:border-r"
-              href={href}
-              key={title}
-            >
-              <div className="flex items-center justify-between gap-4">
-                <Icon aria-hidden="true" className="text-primary" />
-                <ExternalLinkIcon aria-hidden="true" className="text-muted-foreground" />
-              </div>
-              <p className="mt-7 text-xs font-extrabold uppercase tracking-wide text-primary">
-                {type}
-              </p>
-              <h3 className="mt-2 text-2xl font-bold leading-tight">{title}</h3>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">{copy}</p>
-              <EvidenceNote>{note}</EvidenceNote>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y bg-muted/35" id="open-source">
-        <div className="mx-auto grid w-[calc(100%-2rem)] max-w-6xl gap-10 py-20 md:w-[calc(100%-3rem)] lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+      <section className="scroll-mt-16 border-y bg-muted/35" id="open-source">
+        <div
+          className={cn(
+            container,
+            'grid scroll-mt-20 gap-10 py-20 lg:grid-cols-[0.88fr_1.12fr] lg:items-start'
+          )}
+          id={`work-${anvilRegistry.slug}`}
+        >
           <div>
             <Badge variant="secondary" className="mb-5">
               Open source
             </Badge>
-            <SectionIntro
-              title="Anvil Registry"
-              copy="An open-source npm registry gateway and Node devcontainer base image for safer dependency installs, built from a spec with Codex doing the long-haul implementation work."
-            />
+            <SectionIntro title={anvilRegistry.title} copy={anvilRegistry.copy} />
             <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
               Anvil sits between package managers and upstream registries, applies deterministic
               policy, queues analysis, and gives reviewers enough evidence to understand why a
@@ -441,14 +264,16 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="https://anvil-registry.vercel.app/"
+                href={anvilRegistry.href}
+                rel="noopener noreferrer"
                 className={buttonVariants({ size: 'lg' })}
               >
                 Read the docs
                 <ExternalLinkIcon data-icon="inline-end" aria-hidden="true" />
               </a>
               <a
-                href="https://github.com/anthonyhumphreys/anvil-registry/"
+                href={anvilRegistry.repoHref}
+                rel="noopener noreferrer"
                 className={buttonVariants({ variant: 'outline', size: 'lg' })}
               >
                 View repository
@@ -457,62 +282,64 @@ export function Welcome({ posts = [] }: { posts?: PostPreview[] }) {
             </div>
           </div>
 
-          <div className="grid border bg-background md:grid-cols-3 lg:grid-cols-1">
-            {openSourceWork.map(({ icon: Icon, title, copy }, index) => (
-              <article
-                className="min-h-52 border-b p-6 transition-colors hover:bg-muted/45 md:border-r md:border-b-0 lg:border-r-0 lg:border-b"
-                key={title}
-              >
-                <div className="flex items-center justify-between gap-4">
-                  <Icon aria-hidden="true" className="text-primary" />
-                  <span className="font-mono text-xs font-black text-accent">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                </div>
-                <h3 className="mt-6 text-lg font-bold leading-tight">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</p>
-              </article>
+          <ul className="flex flex-col gap-6 border-l-2 border-primary/40 pl-6">
+            {anvilFeatures.map(({ icon: Icon, title, copy }) => (
+              <li key={title}>
+                <h3 className="flex items-center gap-3 text-lg font-bold leading-tight">
+                  <Icon aria-hidden="true" className="size-5 text-primary" />
+                  {title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{copy}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      <section className="mx-auto w-[calc(100%-2rem)] max-w-6xl py-16 md:w-[calc(100%-3rem)]">
-        <Card className="grid gap-8 bg-card text-card-foreground md:grid-cols-[0.8fr_1fr]">
-          <CardHeader>
-            <RocketIcon aria-hidden="true" className="text-primary" />
-            <CardTitle className="text-4xl font-extrabold tracking-tight">
-              How I tend to work
-            </CardTitle>
-            <CardDescription>
+      <section className={cn(container, 'scroll-mt-16 py-20')} id="experience">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionIntro
+              size="sm"
+              title="How I work"
+              copy="I like the bit where vague goals have to become usable systems, sensible architecture, and delivery plans that a real team can survive without forming a support group."
+            />
+            <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
               Strong technical work is rarely just code. It is judgement, collaboration, trade-offs,
               communication, and enough taste to know when an abstraction has wandered into
               self-importance.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ul className="flex flex-col gap-3">
-              {principles.map((item, index) => (
-                <li
-                  className="grid grid-cols-[2rem_1fr] gap-3 rounded-lg border bg-muted/45 p-3 text-sm"
-                  key={item}
-                >
-                  <span className="font-mono text-xs font-black text-accent">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
+            </p>
+            <p className="mt-6 max-w-3xl border-l-2 border-accent pl-4 text-sm leading-7 text-muted-foreground">
+              AWS Certified Solutions Architect - Professional gives me a structured way to reason
+              about reliability, security, cost, scalability, migration, and operational support.
+            </p>
+            <ul className="mt-8 flex flex-col gap-3">
+              {principles.map((item) => (
+                <li className="flex gap-3 text-sm leading-6" key={item}>
+                  <span aria-hidden="true" className="mt-2.5 h-0.5 w-3 shrink-0 bg-accent" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
-          </CardContent>
-        </Card>
+          </div>
+
+          <dl className="grid content-start border-t border-l sm:grid-cols-2" id="technical-work">
+            {practices.map(({ icon: Icon, title, copy }) => (
+              <div className="border-r border-b p-6" key={title}>
+                <dt className="flex items-center gap-3 text-lg font-bold leading-tight">
+                  <Icon aria-hidden="true" className="size-5 text-primary" />
+                  {title}
+                </dt>
+                <dd className="mt-3 text-sm leading-6 text-muted-foreground">{copy}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </section>
 
-      <section
-        className="mx-auto w-[calc(100%-2rem)] max-w-6xl border-t py-20 md:w-[calc(100%-3rem)]"
-        id="writing"
-      >
+      <section className={cn(container, 'scroll-mt-16 border-t py-20')} id="writing">
         <SectionIntro
+          size="sm"
           title="Notes from the workbench"
           copy="Short-form thinking on software, engineering judgement, AI, delivery, and whatever technical decision currently deserves a raised eyebrow."
         />

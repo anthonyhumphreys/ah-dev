@@ -1,6 +1,14 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { CompassIcon } from 'lucide-react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'Anthony Humphreys: senior developer at Lancaster University, founder of Lexio, and AWS Certified Solutions Architect - Professional.',
+};
 
 const usefulWhen = [
   'The goal is real, but the path is still foggy.',
@@ -62,22 +70,24 @@ export default function About() {
       <section className="py-12">
         <h2 className="text-3xl font-extrabold tracking-tight">Where I tend to help</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
-          {usefulWhen.map((item, index) => (
+          {usefulWhen.map((item) => (
             <Card key={item}>
               <CardHeader>
-                <div className="flex items-start justify-between gap-4">
-                  <Badge variant="secondary" className="w-fit">
-                    Senior judgement
-                  </Badge>
-                  <span className="font-mono text-xs font-black text-accent">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                </div>
                 <CardTitle className="text-lg leading-tight">{item}</CardTitle>
               </CardHeader>
             </Card>
           ))}
         </div>
+        <p className="mt-10 text-sm leading-6 text-muted-foreground">
+          Curious about the kit?{' '}
+          <Link
+            href="/about/uses"
+            className="font-medium text-foreground underline decoration-primary/50 underline-offset-4 hover:decoration-primary"
+          >
+            See what I use
+          </Link>
+          .
+        </p>
       </section>
     </main>
   );

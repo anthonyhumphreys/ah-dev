@@ -1,60 +1,6 @@
 import { Badge } from '@/components/ui/badge';
-import {
-  ExternalLinkIcon,
-  Gamepad2Icon,
-  PackageIcon,
-  RocketIcon,
-  SparklesIcon,
-  WorkflowIcon,
-} from 'lucide-react';
-
-export const projectList = [
-  {
-    icon: RocketIcon,
-    title: 'Lexio',
-    description:
-      'Subscription apps and bespoke builds for developers, creators, prototypes, and integrations.',
-    note: 'Keeping small builds tied to a real user job, a testable assumption, and practical routes to market.',
-    href: 'https://www.lexio.app/',
-    status: 'Live',
-  },
-  {
-    icon: Gamepad2Icon,
-    title: 'GMprentice',
-    description:
-      'Practice tabletop GMing with AI adventurers, character tools, dice, initiative, and session flow.',
-    note: 'Focused on rehearsal and feedback for live facilitation, not another content generator with initiative tracking.',
-    href: 'https://www.gmprentice.app/',
-    status: 'Beta',
-  },
-  {
-    icon: SparklesIcon,
-    title: 'JobMatch AI',
-    description:
-      'An AI-powered job board that parses a CV, searches for matching roles, and learns from feedback.',
-    note: 'Testing whether matching, explanations, and feedback loops can make job search less hostile to humans.',
-    href: 'https://personal-job-board-ivory.vercel.app/',
-    status: 'Live',
-  },
-  {
-    icon: PackageIcon,
-    title: 'Anvil Registry',
-    description:
-      'Open-source npm registry gateway and Node devcontainer base image for safer dependency installs.',
-    note: 'Built from a spec with Codex goal mode, keeping deterministic policy in charge while optional AI review adds context.',
-    href: 'https://anvil-registry.vercel.app/',
-    status: 'Open source',
-  },
-  {
-    icon: WorkflowIcon,
-    title: 'Spark',
-    description:
-      'AI-assisted architecture planning for mapping dependencies and validating technical decisions.',
-    note: 'Making dependencies, assumptions, and trade-offs visible before the build gets ideas above its station.',
-    href: 'https://www.lexio.app/',
-    status: 'Coming soon',
-  },
-];
+import { isExternal, projectList } from '@/lib/portfolio';
+import { ExternalLinkIcon } from 'lucide-react';
 
 export function ProjectGrid() {
   return (
@@ -75,16 +21,13 @@ export function ProjectGrid() {
         </p>
       </div>
 
-      <div className="mt-6 flex flex-col">
-        {projectList.map(({ icon: Icon, title, description, href, status, note }, index) => (
-          <a
-            href={href}
-            key={title}
-            className="group grid gap-5 border-b py-7 text-foreground transition-colors hover:bg-muted/35 md:grid-cols-[3rem_1fr_auto]"
+      <ul className="mt-6 flex flex-col">
+        {projectList.map(({ slug, icon: Icon, title, copy, href, linkLabel, status, note }) => (
+          <li
+            key={slug}
+            id={`work-${slug}`}
+            className="grid gap-5 border-b py-7 md:grid-cols-[1fr_10rem] md:gap-10"
           >
-            <span className="font-mono text-sm font-black text-accent">
-              {String(index + 1).padStart(2, '0')}
-            </span>
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-3">
                 <Icon aria-hidden="true" className="text-primary" />
@@ -93,20 +36,32 @@ export function ProjectGrid() {
                 </Badge>
               </div>
               <h2 className="mt-4 text-3xl font-extrabold leading-none tracking-tight">{title}</h2>
-              <p className="mt-3 max-w-3xl text-base leading-7 text-muted-foreground">
-                {description}
-              </p>
+              <p className="mt-3 max-w-3xl text-base leading-7 text-muted-foreground">{copy}</p>
               <p className="mt-4 max-w-3xl rounded-lg border bg-accent/10 px-3 py-2 text-sm font-medium leading-6">
                 {note}
               </p>
             </div>
-            <ExternalLinkIcon
-              aria-hidden="true"
-              className="text-muted-foreground transition-transform group-hover:translate-x-1"
-            />
-          </a>
+            <div className="md:pt-10 md:text-right">
+              {href ? (
+                <a
+                  href={href}
+                  rel={isExternal(href) ? 'noopener noreferrer' : undefined}
+                  className="inline-flex items-center gap-1.5 rounded-sm text-sm font-bold text-primary underline-offset-4 outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/60"
+                >
+                  <span className="sr-only">{title}: </span>
+                  {linkLabel}
+                  <ExternalLinkIcon aria-hidden="true" className="size-3.5" />
+                </a>
+              ) : (
+                <span className="text-sm font-bold text-muted-foreground">
+                  {linkLabel}
+                  <span className="sr-only">: no public link yet</span>
+                </span>
+              )}
+            </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </main>
   );
 }
